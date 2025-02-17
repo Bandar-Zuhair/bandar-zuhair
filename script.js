@@ -52,6 +52,62 @@ scrollToElement = function (elementIdName) {
 
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll("section");
+    let isScrolling = false;
+
+    function scrollToSection(index) {
+        if (index >= 0 && index < sections.length) {
+            isScrolling = true;
+            sections[index].scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+            setTimeout(() => (isScrolling = false), 1000); // Prevent rapid scrolling
+        }
+    }
+
+    let currentSectionIndex = 0;
+
+    window.addEventListener("wheel", function (event) {
+        if (isScrolling) return;
+
+        if (event.deltaY > 0) {
+            // Scroll Down
+            currentSectionIndex = Math.min(currentSectionIndex + 1, sections.length - 1);
+        } else {
+            // Scroll Up
+            currentSectionIndex = Math.max(currentSectionIndex - 1, 0);
+        }
+        scrollToSection(currentSectionIndex);
+    });
+
+    window.addEventListener("touchstart", function (event) {
+        startY = event.touches[0].clientY;
+    });
+
+    window.addEventListener("touchend", function (event) {
+        if (isScrolling) return;
+
+        let endY = event.changedTouches[0].clientY;
+        if (startY - endY > 50) {
+            // Swipe Up (Scroll Down)
+            currentSectionIndex = Math.min(currentSectionIndex + 1, sections.length - 1);
+        } else if (endY - startY > 50) {
+            // Swipe Down (Scroll Up)
+            currentSectionIndex = Math.max(currentSectionIndex - 1, 0);
+        }
+        scrollToSection(currentSectionIndex);
+    });
+});
+
+
+
+
+
+
+
+
 
 /* Function for import all comments from google sheet */
 document.getElementById("indoforall_comment_form").addEventListener("submit", async function (event) {
