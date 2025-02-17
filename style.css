@@ -83,6 +83,23 @@ header.hidden {
     display: none;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Home Section */
 
 .home {
@@ -151,22 +168,24 @@ span {
     font-size: 1.5rem;
 }
 
-.social-media a {
+.social-media * {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 3rem;
-    height: 3rem;
+    width: 2rem;
+    height: 2rem;
     background: transparent;
-    border: .2rem solid var(--main-color);
+    border: 0.2rem solid var(--main-color);
     border-radius: 50%;
     font-size: 2rem;
     color: var(--main-color);
     margin: 1.5rem;
     transition: all 0.3s ease-in-out;
+    padding: 0.5rem;
+    cursor: pointer;
 }
 
-.social-media a:hover {
+.social-media *:hover {
     transform: scale(1.2)translateY(-5px);
     background-color: var(--main-color);
     color: var(--bg-color);
@@ -188,6 +207,27 @@ span {
 .btn:hover {
     box-shadow: 0 0 1.6rem var(--main-color);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* About Section */
 
@@ -230,6 +270,25 @@ span {
     font-size: 1.6rem;
     margin: 2rem 0 3rem;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Services Section */
 
@@ -316,6 +375,23 @@ span {
     color: var(--main-color);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* ******************Customers omments Section********************* */
@@ -530,6 +606,17 @@ span {
     opacity: 1;
     transform: translate(-50%, -50%);
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
