@@ -1,6 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 
 
+@keyframes floatImage {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateX(-1rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
 
 * {
     margin: 0;
@@ -25,32 +39,33 @@ body {
     color: var(--text-color);
 }
 
-section {
-    height: 100vh;
-}
+
+
+
+
+
+
+
+
+
 
 /* Header & NavBar Section */
 
-.header {
-    position: fixed;
-    width: 100%;
+.web_developer_header {
+    position: sticky;
     top: 0;
-    right: 0;
+    width: 100%;
     z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 2rem 5%;
+    padding: 0 5%;
     background: var(--main-color);
     backdrop-filter: blur(10px);
     transition: all 0.5s ease;
 }
 
-header.hidden {
-    transform: translateY(-100%);
-}
-
-.logo {
+.web_developer_logo {
     font-size: 3rem;
     color: var(--bg-color);
     font-weight: 700;
@@ -58,21 +73,17 @@ header.hidden {
     transition: 0.3s ease;
 }
 
-.logo:hover {
-    transform: scale(1.05);
-}
-
-.navbar a {
-    font-size: 1.9rem;
+.web_developer_navbar a {
+    font-size: 1.5rem;
     color: var(--bg-color);
-    margin-left: 4rem;
+    margin-left: 1.5rem;
     font-weight: 700;
     cursor: pointer;
     transition: 0.3s ease-in-out;
 }
 
-.navbar a:hover,
-.navbar a.active {
+.web_developer_navbar a:hover,
+.web_developer_navbar a.active {
     color: var(--text-color);
 }
 
@@ -102,61 +113,45 @@ header.hidden {
 
 /* Home Section */
 
-.home {
+.web_developer_introduction_section {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: red;
+    padding: 2rem 0;
 }
 
-.home-img {
-margin-left: 2rem;
+.web_developer_introduction_section_img {
+    margin-left: 2rem;
 }
 
-.home-img img {
+.web_developer_introduction_section_img img {
     width: 25rem;
     animation: floatImage 4s ease-in-out infinite;
     border-radius: 50%;
     box-shadow: 0 0 25px var(--main-color);
 }
 
-@keyframes floatImage {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-2.4rem);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-
-.home-content {
+.web_developer_introduction_section_content {
     margin-left: 3rem;
 }
 
-.home-content h1 {
+.web_developer_introduction_section_content h1 {
     color: var(--main-color);
     font-size: 1.5rem;
     font-weight: 700;
-    line-height: 1.3;
 }
 
-.home-content h2 {
+.web_developer_introduction_section_content h2 {
     font-size: 3.5rem;
     font-weight: 700;
-    line-height: 1.3;
 }
 
-.home-content h3 {
+.web_developer_introduction_section_content h3 {
     font-size: 1.5rem;
     font-weight: 700;
 }
 
-.home-content h3:nth-of-type(2) {
+.web_developer_introduction_section_content h3:nth-of-type(2) {
     margin-bottom: 2rem;
 }
 
@@ -164,8 +159,8 @@ span {
     color: var(--main-color);
 }
 
-.home-content p {
-    font-size: 1.5rem;
+.web_developer_introduction_section_content p {
+    font-size: 1rem;
 }
 
 .social-media * {
@@ -174,26 +169,25 @@ span {
     align-items: center;
     width: 2rem;
     height: 2rem;
-    background: transparent;
     border: 0.2rem solid var(--main-color);
     border-radius: 50%;
     font-size: 2rem;
     color: var(--main-color);
-    margin: 1.5rem;
-    transition: all 0.3s ease-in-out;
+    margin-top: 1rem;
+    transition: 0.4s ease-in-out;
     padding: 0.5rem;
     cursor: pointer;
 }
 
 .social-media *:hover {
-    transform: scale(1.2)translateY(-5px);
+    transform: translateY(-5px);
     background-color: var(--main-color);
     color: var(--bg-color);
 }
 
 .btn {
     display: inline-block;
-    padding: 1rem 2rem;
+    padding: 0.5rem 1rem;
     background: var(--main-color);
     border-radius: 4rem;
     box-shadow: none;
@@ -201,11 +195,15 @@ span {
     color: var(--bg-color);
     letter-spacing: 0.1rem;
     font-weight: 600;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease-in-out;
+    border: 0.2rem solid transparent;
+    margin-top: 0.5rem;
 }
 
 .btn:hover {
-    box-shadow: 0 0 1.6rem var(--main-color);
+    background-color: transparent;
+    color: var(--main-color);
+    border: 0.2rem solid var(--main-color);
 }
 
 
@@ -235,8 +233,8 @@ span {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
     background: var(--snd-bg-color);
+    padding: 2rem 0;
 }
 
 .about-img img {
@@ -245,21 +243,21 @@ span {
     border: 2px solid var(--main-color);
     border-radius: 50%;
     box-shadow: 0 0 25px var(--main-color);
-}
-
-.heading {
-    text-align: center;
-    font-size: 6rem;
-    margin-bottom: 5rem;
+    animation: floatImage 4s ease-in-out infinite;
 }
 
 .about-content {
     padding: 0 4rem;
 }
 
+.about-content h1 {
+    text-align: center;
+    font-size: 3rem;
+}
+
 .about-content h2 {
     text-align: left;
-    line-height: 1.2;
+    font-size: 2rem;
 }
 
 .about-content h3 {
@@ -267,8 +265,7 @@ span {
 }
 
 .about-content p {
-    font-size: 1.6rem;
-    margin: 2rem 0 3rem;
+    font-size: 1rem;
 }
 
 
@@ -291,24 +288,28 @@ span {
 
 
 /* Services Section */
+.services{
+    padding: 2rem 0;
+}
 
 .services h2 {
-    margin-bottom: 5rem;
+    font-size: 3rem;
+    text-align: center;
 }
 
 .services-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    justify-content: space-between;
     gap: 2rem;
+    padding-bottom: 1rem;
+    align-items: stretch;
+    height: 100%;
 }
 
 .services-box {
-    flex: 1 1 30rem;
     background: var(--snd-bg-color);
-    /* Keeping original background */
-    padding: 5rem 2rem;
+    width: 35rem;
+    padding: 1rem;
     border-radius: 2rem;
     border: 0.2rem solid var(--bg-color);
     transition: 0.4s ease-in-out;
@@ -316,8 +317,8 @@ span {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    position: relative;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
 }
 
 .services-box:hover {
@@ -328,10 +329,9 @@ span {
 
 .services-box i,
 .services-box ion-icon {
-    font-size: 6rem;
+    font-size: 4rem;
     color: var(--main-color);
     background: transparent;
-    /* Keeping original transparent background */
     padding: 1rem;
     border-radius: 50%;
     transition: 0.3s ease-in-out;
@@ -340,34 +340,28 @@ span {
 .services-box:hover i,
 .services-box:hover ion-icon {
     color: var(--main-color);
-    /* Keep color without background change */
 }
 
 .services-box h3 {
-    font-size: 2.2rem;
-    margin: 1rem 0;
-    font-weight: 600;
-    color: inherit;
-    /* Keeps original text color */
+    font-size: 1.5rem;
 }
 
 .services-box p {
-    font-size: 1.4rem;
-    margin: 1rem 0 2rem;
-    color: inherit;
-    /* Keeps original text color */
-    line-height: 1.6;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .services-box .btn {
     display: inline-block;
-    padding: 1rem 2rem;
-    font-size: 1.4rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
     color: #fff;
     background: var(--main-color);
     border-radius: 5rem;
     text-decoration: none;
     transition: 0.3s;
+    margin-top: auto; /* Pushes the button to the bottom */
+    align-self: center;
 }
 
 .services-box .btn:hover {
@@ -551,7 +545,8 @@ span {
     font-size: 1rem;
     font-weight: bold;
     color: #000000;
-    text-align: right;
+    text-align: left;
+    direction: ltr;
 }
 
 #indoforall_comment_username,
@@ -601,7 +596,6 @@ span {
     transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
 }
 
-/* Show animation */
 #indoforall_success_notification.show {
     opacity: 1;
     transform: translate(-50%, -50%);
@@ -629,7 +623,7 @@ span {
     position: relative;
     bottom: 0;
     width: 100%;
-    padding: 40px 0;
+    padding: 1rem 0;
     background: var(--bg-color);
 }
 
@@ -649,7 +643,7 @@ span {
     display: inline-block;
     text-align: center;
     border-radius: 50%;
-    margin: 0 10px;
+    margin: 0 0.5rem;
     transition: 0.3s ease-in-out;
 }
 
@@ -660,128 +654,10 @@ span {
 }
 
 .footer .copyright {
-    margin-top: 20px;
     text-align: center;
     font-size: 16px;
     color: var(--text-color);
 }
-
-/* BreakPoint */
-
-@media (max-width:1200px) {
-    html {
-        font-size: 55%;
-    }
-}
-
-@media (max-width:991px) {
-    .header {
-        padding: 2rem 3%;
-    }
-
-    section {
-        padding: 10rem 3%;
-    }
-
-    .services {
-        padding: 7rem
-    }
-
-    .footer {
-        padding: 2rem 3%;
-    }
-}
-
-@media (max-width:786px) {
-    #menu-icon {
-        display: block;
-    }
-
-    .navbar {
-        position: absolute;
-        top: 100%;
-        right: -100%;
-        width: 255px;
-        max-width: 100%;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        background: var(--main-color);
-        transition: all 0.5s ease;
-        backdrop-filter: blur(10px);
-    }
-
-    .navbar a {
-        display: block;
-        padding: 17px 0;
-        font-size: 22px;
-    }
-
-    .navbar.active {
-        right: 0;
-    }
-
-    .home {
-        flex-direction: column;
-    }
-
-    .home-content h3 {
-        font-size: 2.6rem;
-    }
-
-    .home-content h1 {
-        font-size: 5rem;
-    }
-
-    .home-content {
-        order: 2;
-        margin-left: 1rem;
-    }
-
-    .home-img img {
-        width: 70vw;
-        margin-top: 4rem;
-    }
-
-    .about {
-        flex-direction: column-reverse;
-    }
-
-    .about-img img {
-        width: 70vw;
-        margin-top: 4rem;
-    }
-
-    .services h2 {
-        margin-bottom: 3rem;
-    }
-}
-
-@media (max-width:617px) {
-    .home-img img {
-        width: 70vw;
-        margin-top: 8rem;
-    }
-
-    .about-img img {
-        width: 70vw;
-        margin-top: 4rem;
-    }
-}
-
-@media (max-width:450px) {
-    html {
-        font-size: 50%;
-    }
-}
-
-
-
-
-
-
-
-
 
 
 
@@ -813,7 +689,39 @@ span {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {}
+@media (max-width: 768px) {
+    #menu-icon {
+        display: block;
+    }
+
+    .web_developer_navbar {
+        position: absolute;
+        top: 100%;
+        right: -100%;
+        width: 255px;
+        max-width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: var(--main-color);
+        transition: all 0.5s ease;
+        backdrop-filter: blur(10px);
+    }
+
+    .web_developer_navbar a {
+        display: block;
+        padding: 17px 0;
+        font-size: 22px;
+    }
+
+    .web_developer_navbar.active {
+        right: 0;
+    }
+
+    .web_developer_introduction_section {
+        flex-direction: column;
+    }
+}
 
 /* Responsive Adjustments */
 @media (max-width: 600px) {}

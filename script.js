@@ -52,54 +52,53 @@ scrollToElement = function (elementIdName) {
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    const sections = document.querySelectorAll("section");
-    let isScrolling = false;
 
-    function scrollToSection(index) {
-        if (index >= 0 && index < sections.length) {
-            isScrolling = true;
-            sections[index].scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-            setTimeout(() => (isScrolling = false), 1000); // Prevent rapid scrolling
-        }
-    }
 
-    let currentSectionIndex = 0;
-
-    window.addEventListener("wheel", function (event) {
-        if (isScrolling) return;
-
-        if (event.deltaY > 0) {
-            // Scroll Down
-            currentSectionIndex = Math.min(currentSectionIndex + 1, sections.length - 1);
-        } else {
-            // Scroll Up
-            currentSectionIndex = Math.max(currentSectionIndex - 1, 0);
-        }
-        scrollToSection(currentSectionIndex);
-    });
-
-    window.addEventListener("touchstart", function (event) {
-        startY = event.touches[0].clientY;
-    });
-
-    window.addEventListener("touchend", function (event) {
-        if (isScrolling) return;
-
-        let endY = event.changedTouches[0].clientY;
-        if (startY - endY > 50) {
-            // Swipe Up (Scroll Down)
-            currentSectionIndex = Math.min(currentSectionIndex + 1, sections.length - 1);
-        } else if (endY - startY > 50) {
-            // Swipe Down (Scroll Up)
-            currentSectionIndex = Math.max(currentSectionIndex - 1, 0);
-        }
-        scrollToSection(currentSectionIndex);
-    });
+document.addEventListener("DOMContentLoaded", () => {
+    createElementsSideSlideAnimation();
 });
+
+createElementsSideSlideAnimation = function () {
+    const sections = document.querySelectorAll("section");
+    document.body.style.overflowX = "hidden";
+    document.documentElement.style.overflowX = "hidden";
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const elements = entry.target.querySelectorAll("h1, h2, h3, h4, h5, h6, p, a, ion-icon, label");
+
+            elements.forEach((el, index) => {
+                if (entry.isIntersecting) {
+                    el.style.transition = "transform 1.2s ease, color 0.4s ease, background-color 0.4s ease, border-color 0.4s ease";
+                    el.style.transform = "translateX(0)";
+                } else {
+                    el.style.transition = "transform 1.2s ease";
+                    el.style.transform = index % 2 === 0 ? "translateX(80px)" : "translateX(-80px)";
+                }
+            });
+        });
+    }, { threshold: 0.4 });
+
+    sections.forEach(section => {
+        section.style.width = "100%";
+        section.style.boxSizing = "border-box";
+        section.style.overflow = "hidden";
+
+        const elements = section.querySelectorAll("h1, h2, h3, h4, h5, h6, p, a, ion-icon, label");
+        elements.forEach((el, index) => {
+            el.style.transform = index % 2 === 0 ? "translateX(80px)" : "translateX(-80px)";
+            el.style.transition = "transform 1.2s ease";
+        });
+
+        observer.observe(section);
+    });
+};
+
+
+
+
+
+
 
 
 
@@ -165,7 +164,7 @@ function fetchReviews() {
                 </div>
 
                 <div class="indoforall_clint_rate_info_div indoforall_animate_on_scroll">
-                    <img src="assets/logo.webp" alt="سهم للسفر والسياحة - مكتب سياحي" title="سهم للسفر والسياحة - مكتب سياحي">
+                    <img src="assets/logo.webp" alt="web developer - bandar zuhair" title="web developer - bandar zuhair">
                     <h4>${name}</h4>
                 </div>
 
@@ -185,6 +184,9 @@ function fetchReviews() {
             setTimeout(() => {
                 indoforall_clint_rate_area.classList.add("show");
             }, 100);
+
+
+            createElementsSideSlideAnimation();
         })
         .catch(error => console.error("Error fetching reviews:", error));
 }
@@ -226,21 +228,3 @@ fetchReviews();
 
 
 
-
-/* Header show or hide based on scrolling */
-const header = document.getElementById('header');
-let lastScrollPosition = 0;
-
-window.addEventListener('scroll', () => {
-    const currentScrollPosition = window.scrollY;
-
-    if (currentScrollPosition > lastScrollPosition) {
-        // Scrolling down
-        header.classList.add('hidden');
-    } else {
-        // Scrolling up
-        header.classList.remove('hidden');
-    }
-
-    lastScrollPosition = currentScrollPosition;
-});
