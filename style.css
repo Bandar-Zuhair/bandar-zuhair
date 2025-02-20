@@ -7,7 +7,7 @@
     }
 
     50% {
-        transform: translateX(-1rem);
+        transform: translateY(-1rem);
     }
 
     100% {
@@ -111,45 +111,45 @@ body {
 
 
 /* Home Section */
-.web_developer_introduction_section {
+.web_developer_home_section {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem 0;
 }
 
-.web_developer_introduction_section_img {
+.web_developer_home_section_img {
     margin-left: 2rem;
 }
 
-.web_developer_introduction_section_img img {
+.web_developer_home_section_img img {
     width: 25rem;
     animation: floatImage 4s ease-in-out infinite;
     border-radius: 50%;
-    box-shadow: 0 0 20px var(--main-color);
+    border: 0.5px solid var(--main-color);
 }
 
-.web_developer_introduction_section_content {
+.web_developer_home_section_content {
     margin-left: 3rem;
 }
 
-.web_developer_introduction_section_content h1 {
+.web_developer_home_section_content h1 {
     color: var(--main-color);
     font-size: 1.5rem;
     font-weight: 700;
 }
 
-.web_developer_introduction_section_content h2 {
+.web_developer_home_section_content h2 {
     font-size: 3.5rem;
     font-weight: 700;
 }
 
-.web_developer_introduction_section_content h3 {
+.web_developer_home_section_content h3 {
     font-size: 1.5rem;
     font-weight: 700;
 }
 
-.web_developer_introduction_section_content h3:nth-of-type(2) {
+.web_developer_home_section_content h3:nth-of-type(2) {
     margin-bottom: 2rem;
 }
 
@@ -157,11 +157,11 @@ span {
     color: var(--main-color);
 }
 
-.web_developer_introduction_section_content p {
+.web_developer_home_section_content p {
     font-size: 1rem;
 }
 
-.social-media * {
+.web_developer_home_social_media * {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -176,13 +176,13 @@ span {
     cursor: pointer;
 }
 
-.social-media *:hover {
+.web_developer_home_social_media *:hover {
     transform: translateY(-5px);
     background-color: var(--main-color);
     color: var(--bg-color);
 }
 
-.btn {
+.web_developer_home_download_cv_btn {
     display: inline-block;
     padding: 0.5rem 1rem;
     background: var(--main-color);
@@ -190,14 +190,14 @@ span {
     box-shadow: none;
     font-size: 1.5rem;
     color: var(--bg-color);
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.1vw;
     font-weight: 600;
     transition: all 0.3s ease-in-out;
     border: 0.2rem solid transparent;
     margin-top: 0.5rem;
 }
 
-.btn:hover {
+.web_developer_home_download_cv_btn:hover {
     background-color: transparent;
     color: var(--main-color);
     border: 0.2rem solid var(--main-color);
@@ -225,8 +225,7 @@ span {
 
 
 /* About Section */
-
-.about {
+.web_developer_about {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -234,37 +233,59 @@ span {
     padding: 2rem 0;
 }
 
-.about-img img {
-    width: 25vw;
-    width: 25vw;
-    border: 2px solid var(--main-color);
+.web_developer_about_img {
+    margin-right: 2rem;
+}
+
+.web_developer_about_img img {
+    width: 25rem;
     border-radius: 50%;
-    box-shadow: 0 0 20px var(--main-color);
+    border: 0.5px solid var(--main-color);
     animation: floatImage 4s ease-in-out infinite;
 }
 
-.about-content {
+.web_developer_about_content {
     padding: 0 4rem;
 }
 
-.about-content h1 {
+.web_developer_about_content h1 {
     text-align: center;
     font-size: 3rem;
 }
 
-.about-content h2 {
+.web_developer_about_content h2 {
     text-align: left;
     font-size: 2rem;
 }
 
-.about-content h3 {
+.web_developer_about_content h3 {
     font-size: 3rem;
 }
 
-.about-content p {
+.web_developer_about_content p {
     font-size: 1rem;
 }
 
+.web_developer_about_contact_me_btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--main-color);
+    border-radius: 4rem;
+    box-shadow: none;
+    font-size: 1.5rem;
+    color: var(--bg-color);
+    letter-spacing: 0.1vw;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+    border: 0.2rem solid transparent;
+    margin-top: 0.5rem;
+}
+
+.web_developer_about_contact_me_btn:hover {
+    background-color: transparent;
+    color: var(--main-color);
+    border: 0.2rem solid var(--main-color);
+}
 
 
 
@@ -289,7 +310,7 @@ span {
     padding: 2rem 0;
 }
 
-.services h2 {
+.services h1 {
     font-size: 3rem;
     text-align: center;
 }
@@ -697,51 +718,97 @@ span {
 
 
 
-    /* Intro Section */
-    .web_developer_introduction_section {
+    /* Home Section */
+    .web_developer_home_section {
         padding: 1.5rem 0;
     }
 
-    .web_developer_introduction_section_img {
+    .web_developer_home_section_img {
         margin-left: 1.5rem;
     }
 
-    .web_developer_introduction_section_img img {
+    .web_developer_home_section_img img {
         width: 30vw;
     }
 
-    .web_developer_introduction_section_content {
+    .web_developer_home_section_content {
         margin-left: 2.5rem;
     }
 
-    .web_developer_introduction_section_content h1 {
+    .web_developer_home_section_content h1 {
         font-size: 2.5vw;
     }
 
-    .web_developer_introduction_section_content h2 {
+    .web_developer_home_section_content h2 {
         font-size: 4.5vw;
     }
 
-    .web_developer_introduction_section_content h3 {
+    .web_developer_home_section_content h3 {
         font-size: 2.5vw;
     }
 
-    .web_developer_introduction_section_content h3:nth-of-type(2) {
+    .web_developer_home_section_content h3:nth-of-type(2) {
         margin-bottom: 1.5rem;
     }
 
-    .web_developer_introduction_section_content p {
+    .web_developer_home_section_content p {
         font-size: 1.5vw;
     }
 
-    .social-media * {
+    .web_developer_home_social_media * {
         width: 2.5vw;
         height: 2.5vw;
     }
 
-    .btn {
+    .web_developer_home_download_cv_btn {
         padding: 0.5vw 1vw;
         font-size: 2vw;
+    }
+
+
+
+
+
+
+
+    /* About Section */
+    .web_developer_about {
+        padding: 1.5rem 0;
+    }
+
+    .web_developer_about_img {
+        margin-right: 1.5rem;
+    }
+
+    .web_developer_about_img img {
+        width: 30vw;
+    }
+
+    .web_developer_about_content {
+        padding-left: 2rem;
+        padding-right: 0.5rem;
+    }
+
+    .web_developer_about_content h1 {
+        font-size: 4vw;
+    }
+
+    .web_developer_about_content h2 {
+        font-size: 3vw;
+    }
+
+    .web_developer_about_content h3 {
+        font-size: 4vw;
+    }
+
+    .web_developer_about_content p {
+        font-size: 1.5vw;
+    }
+
+    .web_developer_about_contact_me_btn {
+        padding: 0.5vw 1vw;
+        font-size: 2vw;
+        margin-top: 1vw;
     }
 }
 
@@ -797,45 +864,72 @@ span {
 
 
 
-    /* Intro Section */
-    .web_developer_introduction_section_img {
-        margin-left: 1.5rem;
+    /* Home Section */
+    .web_developer_home_section_img {
+        margin-left: 1rem;
     }
 
-    .web_developer_introduction_section_img img {
-        box-shadow: 0 0 5px var(--main-color);
-    }
-
-    .web_developer_introduction_section_content {
+    .web_developer_home_section_content {
         margin-left: 2rem;
     }
 
-    .web_developer_introduction_section_content h1 {
+    .web_developer_home_section_content h1 {
         font-size: 3vw;
     }
 
-    .web_developer_introduction_section_content h2 {
+    .web_developer_home_section_content h2 {
         font-size: 5vw;
     }
 
-    .web_developer_introduction_section_content h3 {
+    .web_developer_home_section_content h3 {
         font-size: 3vw;
     }
 
-    .web_developer_introduction_section_content h3:nth-of-type(2) {
+    .web_developer_home_section_content h3:nth-of-type(2) {
         margin-bottom: 1rem;
     }
 
-    .web_developer_introduction_section_content p {
+    .web_developer_home_section_content p {
         font-size: 2vw;
     }
 
-    .social-media * {
+    .web_developer_home_social_media * {
         width: 3vw;
         height: 3vw;
     }
 
-    .btn {
+    .web_developer_home_download_cv_btn {
+        font-size: 3vw;
+    }
+
+
+
+
+
+
+
+    /* About Section */
+    .web_developer_about_img {
+        margin-right: 1rem;
+    }
+
+    .web_developer_about_content h1 {
+        font-size: 4.5vw;
+    }
+
+    .web_developer_about_content h2 {
+        font-size: 3.5vw;
+    }
+
+    .web_developer_about_content h3 {
+        font-size: 4.5vw;
+    }
+
+    .web_developer_about_content p {
+        font-size: 2vw;
+    }
+
+    .web_developer_about_contact_me_btn {
         font-size: 3vw;
     }
 }
@@ -870,46 +964,78 @@ span {
 
 
 
-    /* Intro Section */
-    .web_developer_introduction_section {
+    /* Home Section */
+    .web_developer_home_section {
         padding: 0.5rem 0;
     }
-    .web_developer_introduction_section_img {
-        margin-left: 1.5rem;
+
+    .web_developer_home_section_img {
+        margin-left: 0.1rem;
     }
 
-    .web_developer_introduction_section_content {
-        margin-left: 1rem;
-        margin-right: 0.5rem;
+    .web_developer_home_section_content {
+        margin-left: 0.3rem;
+        margin-right: 0.2rem;
     }
 
-    .web_developer_introduction_section_content h1 {
+    .web_developer_home_section_content h1 {
         font-size: 5.5vw;
     }
 
-    .web_developer_introduction_section_content h2 {
+    .web_developer_home_section_content h2 {
         font-size: 7.5vw;
     }
 
-    .web_developer_introduction_section_content h3 {
+    .web_developer_home_section_content h3 {
         font-size: 5vw;
     }
 
-    .web_developer_introduction_section_content h3:nth-of-type(2) {
+    .web_developer_home_section_content h3:nth-of-type(2) {
         margin-bottom: 0.5rem;
     }
 
-    .web_developer_introduction_section_content p {
+    .web_developer_home_section_content p {
         font-size: 2.8vw;
     }
 
-    .social-media * {
+    .web_developer_home_social_media * {
         width: 6vw;
         height: 6vw;
         padding: 0.3rem;
     }
 
-    .btn {
+    .web_developer_home_download_cv_btn {
+        font-size: 4vw;
+    }
+
+
+
+
+
+
+
+    /* About Section */
+    .web_developer_about_img {
+        margin-right: 0.1rem;
+    }
+
+    .web_developer_about_content {
+        padding: 0 0.3rem;
+    }
+
+    .web_developer_about_content h1 {
+        font-size: 5.5vw;
+    }
+
+    .web_developer_about_content h3 {
+        font-size: 5.5vw;
+    }
+
+    .web_developer_about_content p {
+        font-size: 3vw;
+    }
+
+    .web_developer_about_contact_me_btn {
         font-size: 4vw;
     }
 }
