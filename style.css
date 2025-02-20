@@ -49,7 +49,7 @@ body {
 
 
 
-/* Header & NavBar Section */
+/* ****************** Header & NavBar Section ********************* */
 .web_developer_header {
     position: sticky;
     top: 0;
@@ -109,8 +109,7 @@ body {
 
 
 
-
-/* Home Section */
+/* ****************** Home Section ********************* */
 .web_developer_home_section {
     display: flex;
     justify-content: center;
@@ -223,8 +222,7 @@ span {
 
 
 
-
-/* About Section */
+/* ****************** About Section ********************* */
 .web_developer_about {
     display: flex;
     align-items: center;
@@ -304,29 +302,28 @@ span {
 
 
 
-
-/* Services Section */
-.services {
+/* ****************** Services Section ********************* */
+.web_developer_services {
     padding: 2rem 0;
 }
 
-.services h1 {
+.web_developer_services h1 {
     font-size: 3rem;
     text-align: center;
 }
 
-.services-container {
+.web_developer_services_container {
     display: flex;
-    justify-content: space-between;
-    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
     padding-bottom: 1rem;
-    align-items: stretch;
     height: 100%;
 }
 
-.services-box {
+.web_developer_services_box {
     background: var(--snd-bg-color);
     width: 35rem;
+    margin: 0.5rem;
     padding: 1rem;
     border-radius: 2rem;
     border: 0.2rem solid var(--bg-color);
@@ -336,17 +333,16 @@ span {
     align-items: center;
     text-align: center;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-    flex-grow: 1;
 }
 
-.services-box:hover {
+.web_developer_services_box:hover {
     transform: translateY(-5px);
     border-color: var(--main-color);
     box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.2);
 }
 
-.services-box i,
-.services-box ion-icon {
+.web_developer_services_box i,
+.web_developer_services_box ion-icon {
     font-size: 4rem;
     color: var(--main-color);
     background: transparent;
@@ -355,21 +351,21 @@ span {
     transition: 0.3s ease-in-out;
 }
 
-.services-box:hover i,
-.services-box:hover ion-icon {
+.web_developer_services_box:hover i,
+.web_developer_services_box:hover ion-icon {
     color: var(--main-color);
 }
 
-.services-box h3 {
+.web_developer_services_box h3 {
     font-size: 1.5rem;
 }
 
-.services-box p {
+.web_developer_services_box p {
     font-size: 1rem;
     margin-bottom: 0.5rem;
 }
 
-.services-box .btn {
+.web_developer_services_box_btn {
     display: inline-block;
     padding: 0.5rem 1rem;
     font-size: 1rem;
@@ -379,11 +375,10 @@ span {
     text-decoration: none;
     transition: 0.3s;
     margin-top: auto;
-    /* Pushes the button to the bottom */
     align-self: center;
 }
 
-.services-box .btn:hover {
+.web_developer_services_box_btn:hover {
     background: #fff;
     color: var(--main-color);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -407,7 +402,7 @@ span {
 
 
 
-/* ******************Customers omments Section********************* */
+/* ****************** Customers Cmments Section ********************* */
 .mughader_customers_comments_section {
     background: #f9f9f9;
     padding-top: 0.5vmax;
@@ -636,8 +631,7 @@ span {
 
 
 
-/* ******************Footer Section********************* */
-
+/* ****************** Footer Section ********************* */
 .footer {
     position: relative;
     bottom: 0;
@@ -698,7 +692,7 @@ span {
 /* 1250px */
 @media(max-width:1250px) {
 
-    /* Header */
+    /* ****************** Header & NavBar Section ********************* */
     .web_developer_header {
         padding: 0 2%;
     }
@@ -718,7 +712,7 @@ span {
 
 
 
-    /* Home Section */
+    /* ****************** Home Section ********************* */
     .web_developer_home_section {
         padding: 1.5rem 0;
     }
@@ -771,7 +765,7 @@ span {
 
 
 
-    /* About Section */
+    /* ****************** About Section ********************* */
     .web_developer_about {
         padding: 1.5rem 0;
     }
@@ -810,6 +804,50 @@ span {
         font-size: 2vw;
         margin-top: 1vw;
     }
+
+
+
+
+
+
+
+
+
+
+
+    /* ****************** Services Section ********************* */
+    .web_developer_services {
+        padding: 1.5rem 0;
+    }
+
+    .web_developer_services h1 {
+        font-size: 4vw;
+    }
+
+    .web_developer_services_box {
+        width: 40vw;
+        padding: 1vw;
+    }
+
+    .web_developer_services_box i,
+    .web_developer_services_box ion-icon {
+        font-size: 5vw;
+        padding: 1vw;
+    }
+
+    .web_developer_services_box h3 {
+        font-size: 2vw;
+    }
+
+    .web_developer_services_box p {
+        font-size: 1.5vw;
+        margin-bottom: 1vw;
+    }
+
+    .web_developer_services_box_btn {
+        padding: 1vw 1.5vw;
+        font-size: 1.5vw;
+    }
 }
 
 
@@ -820,7 +858,7 @@ span {
 /* Responsive Design */
 @media (max-width: 768px) {
 
-    /* Header */
+    /* ****************** Header & NavBar Section ********************* */
     .web_developer_header {
         padding: 0 2%;
     }
@@ -864,7 +902,7 @@ span {
 
 
 
-    /* Home Section */
+    /* ****************** Home Section ********************* */
     .web_developer_home_section_img {
         margin-left: 1rem;
     }
@@ -908,7 +946,7 @@ span {
 
 
 
-    /* About Section */
+    /* ****************** About Section ********************* */
     .web_developer_about_img {
         margin-right: 1rem;
     }
@@ -932,12 +970,49 @@ span {
     .web_developer_about_contact_me_btn {
         font-size: 3vw;
     }
+
+
+
+
+
+
+
+
+
+
+    /* ****************** Services Section ********************* */
+    .web_developer_services h1 {
+        font-size: 5vw;
+    }
+
+    .web_developer_services_box {
+        width: 45vw;
+        padding: 0.5vw;
+    }
+
+    .web_developer_services_box i,
+    .web_developer_services_box ion-icon {
+        font-size: 5vw;
+        padding: 1vw;
+    }
+
+    .web_developer_services_box h3 {
+        font-size: 3vw;
+    }
+
+    .web_developer_services_box p {
+        font-size: 2.5vw;
+    }
+
+    .web_developer_services_box_btn {
+        font-size: 2vw;
+    }
 }
 
 /* Responsive Adjustments */
 @media (max-width: 500px) {
 
-    /* Header */
+    /* ****************** Header & NavBar Section ********************* */
     .web_developer_header {
         padding: 0 2%;
     }
@@ -964,7 +1039,7 @@ span {
 
 
 
-    /* Home Section */
+    /* ****************** Home Section ********************* */
     .web_developer_home_section {
         padding: 0.5rem 0;
     }
@@ -1014,7 +1089,11 @@ span {
 
 
 
-    /* About Section */
+    /* ****************** About Section ********************* */
+    .web_developer_about {
+        padding: 0.5rem 0;
+    }
+
     .web_developer_about_img {
         margin-right: 0.1rem;
     }
@@ -1037,6 +1116,44 @@ span {
 
     .web_developer_about_contact_me_btn {
         font-size: 4vw;
+    }
+
+
+
+
+
+
+
+
+    /* ****************** Services Section ********************* */
+    .web_developer_services {
+        padding: 0.5rem 0;
+    }
+
+    .web_developer_services h1 {
+        font-size: 6vw;
+    }
+
+    .web_developer_services_box {
+        width: 47vw;
+        margin: 0.5vw;
+    }
+
+    .web_developer_services_box i,
+    .web_developer_services_box ion-icon {
+        font-size: 6vw;
+    }
+
+    .web_developer_services_box h3 {
+        font-size: 3.5vw;
+    }
+
+    .web_developer_services_box p {
+        font-size: 2.7vw;
+    }
+
+    .web_developer_services_box_btn {
+        font-size: 3vw;
     }
 }
 
