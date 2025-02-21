@@ -164,7 +164,7 @@ function fetchReviews() {
                 </div>
 
                 <div class="web-developer-customers-comments-info-div">
-                    <img src="assets/logo.webp" alt="Web Developer - Bandar Zuhair" title="Web Developer - Bandar Zuhair">
+                    <img src="web-developer/web-developer-logo.webp" alt="Web Developer - Bandar Zuhair" title="Web Developer - Bandar Zuhair">
                     <h4>${name}</h4>
                 </div>
 
