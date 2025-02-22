@@ -2,14 +2,18 @@ let menu = document.querySelector('#web-developer-menu-icon');
 let navbar = document.querySelector('.web-developer-navbar');
 
 menu.onclick = () => {
-    menu.classList.toggle('bx-x');
+    let isMenuOpen = menu.getAttribute("name") === "menu-sharp";
+    
+    menu.setAttribute("name", isMenuOpen ? "close-sharp" : "menu-sharp");
     navbar.classList.toggle('active');
-}
+};
 
+// Close menu when scrolling
 window.onscroll = () => {
-    menu.classList.remove('bx-x');
+    menu.setAttribute("name", "menu-sharp");
     navbar.classList.remove('active');
-}
+};
+
 
 const typed = new Typed('.multiple-text', {
     strings: ['Front-End Dev', 'Back-End Dev', 'Full-Stack Dev', 'Web Designer', 'Google SEO Expert'],
