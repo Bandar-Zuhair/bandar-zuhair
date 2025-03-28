@@ -39,6 +39,9 @@ scrollToElement = function (elementIdName) {
             top: scrollToPosition,
             behavior: "smooth"
         });
+
+
+        enableSmoothScrolling();
     }
 }
 
@@ -49,84 +52,80 @@ scrollToElement = function (elementIdName) {
 
 
 
-/* Smooth scrolling between sections */
-let sections = document.querySelectorAll("section");
-let currentIndex = 0;
-let isScrolling = false; // Prevents rapid scrolling issues
+function enableSmoothScrolling() {
+    let sections = document.querySelectorAll("section");
+    let isScrolling = false;
+    const DEBOUNCE_TIME = 500; // Time before allowing another scroll
+    const SWIPE_THRESHOLD = 30; // Minimum swipe distance to trigger scrolling
 
-// Scroll Thresholds
-const SCROLL_SPEED_THRESHOLD = 50; // Adjust for mouse speed sensitivity
-const TOUCH_SPEED_THRESHOLD = 0.3; // Adjust for swipe sensitivity
-const DEBOUNCE_TIME = 800; // Time before allowing another scroll
+    // Function to find the closest section to scroll to
+    function getClosestSectionIndex() {
+        let scrollPosition = window.scrollY + window.innerHeight / 2; // Get middle viewport position
+        let closestIndex = 0;
+        let closestDistance = Infinity;
 
-// Function to scroll to a section
-function scrollToSection(index) {
-    if (index < 0 || index >= sections.length) return;
+        sections.forEach((section, index) => {
+            let sectionMiddle = section.offsetTop + section.offsetHeight / 2;
+            let distance = Math.abs(scrollPosition - sectionMiddle);
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestIndex = index;
+            }
+        });
 
-    let section = sections[index];
-    let sectionMiddle = section.offsetTop + section.offsetHeight / 2 - window.innerHeight / 2;
+        return closestIndex;
+    }
 
-    window.scrollTo({
-        top: sectionMiddle,
-        behavior: "smooth",
-    });
+    // Function to scroll to a section smoothly
+    function scrollToClosestSection(scrollDirection) {
+        if (isScrolling) return;
 
-    currentIndex = index;
-    isScrolling = true;
-    setTimeout(() => (isScrolling = false), DEBOUNCE_TIME);
+        let currentIndex = getClosestSectionIndex();
+        let targetIndex = scrollDirection > 0 ? currentIndex + 1 : currentIndex - 1;
+
+        if (targetIndex < 0 || targetIndex >= sections.length) return; // Prevent out-of-bounds scrolling
+
+        let targetSection = sections[targetIndex];
+        window.scrollTo({
+            top: targetSection.offsetTop,
+            behavior: "smooth",
+        });
+
+        isScrolling = true;
+        setTimeout(() => (isScrolling = false), DEBOUNCE_TIME);
+    }
+
+    // Mouse Wheel Event
+    function handleWheel(event) {
+        scrollToClosestSection(event.deltaY);
+    }
+
+    // Touch Events (Fix: Only Scroll on Swipe, Not Tap)
+    let startY = 0;
+
+    function handleTouchStart(event) {
+        startY = event.touches[0].clientY;
+    }
+
+    function handleTouchEnd(event) {
+        if (isScrolling) return;
+
+        let endY = event.changedTouches[0].clientY;
+        let distance = Math.abs(startY - endY);
+
+        if (distance > SWIPE_THRESHOLD) {
+            scrollToClosestSection(startY - endY);
+        }
+    }
+
+    // Attach event listeners
+    window.addEventListener("wheel", handleWheel);
+    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchend", handleTouchEnd);
 }
 
-// Mouse Wheel Event (Fast Scroll Detection)
-let lastScrollTime = 0;
-window.addEventListener("wheel", (event) => {
-    let currentTime = new Date().getTime();
-    let timeDiff = currentTime - lastScrollTime;
-    lastScrollTime = currentTime;
-
-    if (isScrolling) return;
-
-    if (Math.abs(event.deltaY) > SCROLL_SPEED_THRESHOLD && timeDiff < 150) {
-        if (event.deltaY > 0) {
-            scrollToSection(currentIndex + 1);
-        } else {
-            scrollToSection(currentIndex - 1);
-        }
-    }
-});
-
-// Touch Events (Fast Swipe Detection)
-let startY = 0;
-let startTime = 0;
-
-window.addEventListener("touchstart", (event) => {
-    startY = event.touches[0].clientY;
-    startTime = new Date().getTime();
-});
-
-window.addEventListener("touchend", (event) => {
-    if (isScrolling) return;
-
-    let endY = event.changedTouches[0].clientY;
-    let endTime = new Date().getTime();
-    let timeDiff = endTime - startTime;
-    let distance = Math.abs(startY - endY);
-    let speed = distance / timeDiff; // Swipe speed
-
-    if (speed > TOUCH_SPEED_THRESHOLD) {
-        if (startY > endY) {
-            scrollToSection(currentIndex + 1);
-        } else {
-            scrollToSection(currentIndex - 1);
-        }
-    }
-});
-
-
-
-
-
-
-
+// Call this function whenever you want to enable smooth scrolling
+enableSmoothScrolling();
 
 
 
@@ -162,9 +161,6 @@ function createElementsSideSlideAnimation() {
 
 /* Run a function to apply the slide animation */
 createElementsSideSlideAnimation();
-
-
-
 
 
 
@@ -291,28 +287,118 @@ fetchReviews();
 
 
 /* Play video in the background of the first section */
-const video = document.createElement("video");
-video.src = "bandar-zuhair-web-freelancer.mp4"; // Set video source
-video.autoplay = true;
-video.loop = true;
-video.muted = true; // Required for autoplay
-video.playsInline = true; // Ensures it works on mobile
-video.id = "background-video";
+const home_section_video = document.createElement("video");
+home_section_video.src = "web-freelancer-bandar-zuhair.mp4"; // Set video source
+home_section_video.autoplay = true;
+home_section_video.loop = true;
+home_section_video.muted = true; // Required for autoplay
+home_section_video.playsInline = true; // Ensures it works on mobile
 
 // Style the video
-video.style.position = "absolute";
-video.style.top = "0";
-video.style.left = "0";
-video.style.width = "100%";
-video.style.height = "100%";
-video.style.objectFit = "cover";
-video.style.zIndex = "-1"; // Send it to the background
-video.style.opacity = "0.1"; // Send it to the background
+home_section_video.style.position = "absolute";
+home_section_video.style.top = "0";
+home_section_video.style.left = "0";
+home_section_video.style.width = "100%";
+home_section_video.style.height = "100%";
+home_section_video.style.objectFit = "cover";
+home_section_video.style.zIndex = "-1"; // Send it to the background
+home_section_video.style.opacity = "0.1"; // Send it to the background
 
 // Get the section and append the video as the first child
-const section = document.getElementById("web-freelancer-home-section");
-section.style.position = "relative"; // Ensure proper layering
-section.prepend(video);
+const home_section = document.getElementById("web-freelancer-home-section");
+home_section.style.position = "relative"; // Ensure proper layering
+home_section.prepend(home_section_video);
+
+
+
+
+
+
+/* Play video in the background of the first section */
+const about_section_video = document.createElement("video");
+about_section_video.src = "web-freelancer-about-bandar-zuhair.mp4"; // Set video source
+about_section_video.autoplay = true;
+about_section_video.loop = true;
+about_section_video.muted = true; // Required for autoplay
+about_section_video.playsInline = true; // Ensures it works on mobile
+
+// Style the video
+about_section_video.style.position = "absolute";
+about_section_video.style.top = "0";
+about_section_video.style.left = "0";
+about_section_video.style.width = "100%";
+about_section_video.style.height = "100%";
+about_section_video.style.objectFit = "cover";
+about_section_video.style.zIndex = "-1"; // Send it to the background
+about_section_video.style.opacity = "0.1"; // Send it to the background
+
+// Get the section and append the video as the first child
+const about_section = document.getElementById("web-freelancer-about");
+about_section.style.position = "relative"; // Ensure proper layering
+about_section.prepend(about_section_video);
+
+
+
+
+/* Play video in the background of the first section */
+const sevices_section_video = document.createElement("video");
+sevices_section_video.src = "web-freelancer-services.mp4"; // Set video source
+sevices_section_video.autoplay = true;
+sevices_section_video.loop = true;
+sevices_section_video.muted = true; // Required for autoplay
+sevices_section_video.playsInline = true; // Ensures it works on mobile
+
+// Style the video
+sevices_section_video.style.position = "absolute";
+sevices_section_video.style.top = "0";
+sevices_section_video.style.left = "0";
+sevices_section_video.style.width = "100%";
+sevices_section_video.style.height = "100%";
+sevices_section_video.style.objectFit = "cover";
+sevices_section_video.style.zIndex = "-1"; // Send it to the background
+sevices_section_video.style.opacity = "0.1"; // Send it to the background
+
+// Get the section and append the video as the first child
+const sevices_section = document.getElementById("web-freelancer-services");
+sevices_section.style.position = "relative"; // Ensure proper layering
+sevices_section.prepend(sevices_section_video);
+
+
+
+
+/* Play video in the background of the first section */
+const comment_section_video = document.createElement("video");
+comment_section_video.src = "web-freelancer-comment.mp4"; // Set video source
+comment_section_video.autoplay = true;
+comment_section_video.loop = true;
+comment_section_video.muted = true; // Required for autoplay
+comment_section_video.playsInline = true; // Ensures it works on mobile
+
+// Style the video
+comment_section_video.style.position = "absolute";
+comment_section_video.style.top = "0";
+comment_section_video.style.left = "0";
+comment_section_video.style.width = "100%";
+comment_section_video.style.height = "100%";
+comment_section_video.style.objectFit = "cover";
+comment_section_video.style.zIndex = "-1"; // Send it to the background
+comment_section_video.style.opacity = "0.1"; // Send it to the background
+
+// Get the section and append the video as the first child
+const comment_section = document.getElementById("web-freelancer-customers-comments-section");
+comment_section.style.position = "relative"; // Ensure proper layering
+comment_section.prepend(comment_section_video);
+
+
+
+
+
+
+
+
+
+
+
 
 
 
