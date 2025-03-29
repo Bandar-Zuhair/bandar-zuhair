@@ -300,6 +300,10 @@ fetchReviews();
 
 
 
+
+
+
+/* Function to run a video in the background of a section */
 function addBackgroundVideo(sectionId, videoSrc) {
     const video = document.createElement("video");
     Object.assign(video, {
