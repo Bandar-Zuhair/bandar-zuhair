@@ -39,9 +39,6 @@ scrollToElement = function (elementIdName) {
             top: scrollToPosition,
             behavior: "smooth"
         });
-
-
-        enableSmoothScrolling();
     }
 }
 
@@ -52,104 +49,114 @@ scrollToElement = function (elementIdName) {
 
 
 
-function enableSmoothScrolling() {
-    let sections = document.querySelectorAll("section");
-    let isScrolling = false;
-    const DEBOUNCE_TIME = 500; // Time before allowing another scroll
-    const SWIPE_THRESHOLD = 30; // Minimum swipe distance to trigger scrolling
+let sections = document.querySelectorAll("section");
+let isScrolling = false;
+const DEBOUNCE_TIME = 500; // Time before allowing another scroll
+const SWIPE_THRESHOLD = 30; // Minimum swipe distance to trigger scrolling
 
-    // Function to find the closest section to scroll to
-    function getClosestSectionIndex() {
-        let scrollPosition = window.scrollY + window.innerHeight / 2; // Get middle viewport position
-        let closestIndex = 0;
-        let closestDistance = Infinity;
+// Function to find the closest section to scroll to
+function getClosestSectionIndex() {
+    let scrollPosition = window.scrollY + window.innerHeight / 2; // Get middle viewport position
+    let closestIndex = 0;
+    let closestDistance = Infinity;
 
-        sections.forEach((section, index) => {
-            let sectionMiddle = section.offsetTop + section.offsetHeight / 2;
-            let distance = Math.abs(scrollPosition - sectionMiddle);
-            if (distance < closestDistance) {
-                closestDistance = distance;
-                closestIndex = index;
-            }
-        });
-
-        return closestIndex;
-    }
-
-    // Function to scroll to a section smoothly
-    function scrollToClosestSection(scrollDirection) {
-        if (isScrolling) return;
-
-        let currentIndex = getClosestSectionIndex();
-        let targetIndex = scrollDirection > 0 ? currentIndex + 1 : currentIndex - 1;
-
-        if (targetIndex < 0 || targetIndex >= sections.length) return; // Prevent out-of-bounds scrolling
-
-        let targetSection = sections[targetIndex];
-        window.scrollTo({
-            top: targetSection.offsetTop,
-            behavior: "smooth",
-        });
-
-        isScrolling = true;
-        setTimeout(() => (isScrolling = false), DEBOUNCE_TIME);
-    }
-
-    // Mouse Wheel Event
-    function handleWheel(event) {
-        scrollToClosestSection(event.deltaY);
-    }
-
-    // Touch Events (Fix: Only Scroll on Swipe, Not Tap)
-    let startY = 0;
-
-    function handleTouchStart(event) {
-        startY = event.touches[0].clientY;
-    }
-
-    function handleTouchEnd(event) {
-        if (isScrolling) return;
-
-        let endY = event.changedTouches[0].clientY;
-        let distance = Math.abs(startY - endY);
-
-        if (distance > SWIPE_THRESHOLD) {
-            scrollToClosestSection(startY - endY);
+    sections.forEach((section, index) => {
+        let sectionMiddle = section.offsetTop + section.offsetHeight / 2;
+        let distance = Math.abs(scrollPosition - sectionMiddle);
+        if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
         }
-    }
+    });
 
-    // Attach event listeners
-    window.addEventListener("wheel", handleWheel);
-    window.addEventListener("touchstart", handleTouchStart);
-    window.addEventListener("touchend", handleTouchEnd);
+    return closestIndex;
 }
 
-// Call this function whenever you want to enable smooth scrolling
-enableSmoothScrolling();
+// Function to scroll to a section smoothly
+function scrollToClosestSection(scrollDirection) {
+    if (isScrolling) return;
 
+    let currentIndex = getClosestSectionIndex();
+    let targetIndex = scrollDirection > 0 ? currentIndex + 1 : currentIndex - 1;
 
+    if (targetIndex < 0 || targetIndex >= sections.length) return; // Prevent out-of-bounds scrolling
 
+    let targetSection = sections[targetIndex];
+    window.scrollTo({
+        top: targetSection.offsetTop,
+        behavior: "smooth",
+    });
 
+    isScrolling = true;
+    setTimeout(() => (isScrolling = false), DEBOUNCE_TIME);
+}
 
-/* Function to apply the side slide animation effect */
+// Mouse Wheel Event
+function handleWheel(event) {
+    scrollToClosestSection(event.deltaY);
+}
+
+// Touch Events (Fix: Only Scroll on Swipe, Not Tap)
+let startY = 0;
+
+function handleTouchStart(event) {
+    startY = event.touches[0].clientY;
+}
+
+function handleTouchEnd(event) {
+    if (isScrolling) return;
+
+    let endY = event.changedTouches[0].clientY;
+    let distance = Math.abs(startY - endY);
+
+    if (distance > SWIPE_THRESHOLD) {
+        scrollToClosestSection(startY - endY);
+    }
+}
+
+// Attach event listeners
+window.addEventListener("wheel", handleWheel);
+window.addEventListener("touchstart", handleTouchStart);
+window.addEventListener("touchend", handleTouchEnd);
+
+// Function to assign alternating slide animations
+function assignSlideDirections() {
+    document.querySelectorAll(".animated-element").forEach((el, index) => {
+        el.classList.add(index % 2 === 0 ? "slide-left" : "slide-right");
+    });
+}
+
+// Function to reset and restart animations
+function applyAnimations(section) {
+    let elements = section.querySelectorAll(".animated-element");
+
+    elements.forEach((el) => {
+        el.classList.remove("animate"); // Remove animation class
+        void el.offsetWidth; // Force reflow (restart animation)
+        setTimeout(() => el.classList.add("animate"), 50); // Re-add after a delay
+        console.log(`Animation applied to: ${el.innerText || "Element"}`);
+    });
+}
+
+/* Function to handle intersection and animations */
 function createElementsSideSlideAnimation() {
-    const sections = document.querySelectorAll("section");
     document.body.style.overflowX = "hidden";
     document.documentElement.style.overflowX = "hidden";
 
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+            const innerElements = entry.target.querySelectorAll("*:not(video)"); // Select all elements except videos
+
             if (entry.isIntersecting) {
-                const elements = entry.target.querySelectorAll(".animated-element");
-
-                elements.forEach((el) => {
-                    if (!el.classList.contains("animated")) {
-                        el.classList.add("animate"); // Add class to trigger animation
-                        el.classList.add("animated"); // Mark as animated
-                    }
+                // Reveal elements and trigger animation
+                innerElements.forEach(el => el.style.opacity = "1");
+                applyAnimations(entry.target);
+            } else {
+                // Hide elements and reset animation
+                innerElements.forEach(el => {
+                    el.style.opacity = "0";
+                    el.classList.remove("animate"); // Ensure animation resets
                 });
-
-                observer.unobserve(entry.target); // Stop observing after animation
             }
         });
     }, { threshold: 0.4 });
@@ -159,8 +166,14 @@ function createElementsSideSlideAnimation() {
     });
 }
 
-/* Run a function to apply the slide animation */
+// Assign slide directions before animations start
+assignSlideDirections();
+
+/* Run animation logic */
 createElementsSideSlideAnimation();
+
+
+
 
 
 
@@ -248,8 +261,9 @@ function fetchReviews() {
             setTimeout(() => {
                 web_freelancer_customers_comments_area.classList.add("show");
             }, 100);
+            
 
-
+            assignSlideDirections();
             createElementsSideSlideAnimation();
         })
         .catch(error => console.error("Error fetching reviews:", error));
@@ -286,108 +300,40 @@ fetchReviews();
 
 
 
-/* Play video in the background of the first section */
-const home_section_video = document.createElement("video");
-home_section_video.src = "web-freelancer-bandar-zuhair.mp4"; // Set video source
-home_section_video.autoplay = true;
-home_section_video.loop = true;
-home_section_video.muted = true; // Required for autoplay
-home_section_video.playsInline = true; // Ensures it works on mobile
+function addBackgroundVideo(sectionId, videoSrc) {
+    const video = document.createElement("video");
+    Object.assign(video, {
+        src: videoSrc,
+        autoplay: true,
+        loop: true,
+        muted: true,
+        playsInline: true
+    });
 
-// Style the video
-home_section_video.style.position = "absolute";
-home_section_video.style.top = "0";
-home_section_video.style.left = "0";
-home_section_video.style.width = "100%";
-home_section_video.style.height = "100%";
-home_section_video.style.objectFit = "cover";
-home_section_video.style.zIndex = "-1"; // Send it to the background
-home_section_video.style.opacity = "0.1"; // Send it to the background
+    Object.assign(video.style, {
+        position: "absolute",
+        top: "0",
+        left: "0",
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        zIndex: "-1",
+        opacity: "0.1"
+    });
 
-// Get the section and append the video as the first child
-const home_section = document.getElementById("web-freelancer-home-section");
-home_section.style.position = "relative"; // Ensure proper layering
-home_section.prepend(home_section_video);
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.style.position = "relative";
+        section.prepend(video);
+    }
+}
 
+// Add videos to sections
+addBackgroundVideo("web-freelancer-home-section", "web-freelancer-bandar-zuhair.mp4");
+addBackgroundVideo("web-freelancer-about", "web-freelancer-about-bandar-zuhair.mp4");
+addBackgroundVideo("web-freelancer-services", "web-freelancer-services.mp4");
+addBackgroundVideo("web-freelancer-customers-comments-section", "web-freelancer-comment.mp4");
 
-
-
-
-
-/* Play video in the background of the first section */
-const about_section_video = document.createElement("video");
-about_section_video.src = "web-freelancer-about-bandar-zuhair.mp4"; // Set video source
-about_section_video.autoplay = true;
-about_section_video.loop = true;
-about_section_video.muted = true; // Required for autoplay
-about_section_video.playsInline = true; // Ensures it works on mobile
-
-// Style the video
-about_section_video.style.position = "absolute";
-about_section_video.style.top = "0";
-about_section_video.style.left = "0";
-about_section_video.style.width = "100%";
-about_section_video.style.height = "100%";
-about_section_video.style.objectFit = "cover";
-about_section_video.style.zIndex = "-1"; // Send it to the background
-about_section_video.style.opacity = "0.1"; // Send it to the background
-
-// Get the section and append the video as the first child
-const about_section = document.getElementById("web-freelancer-about");
-about_section.style.position = "relative"; // Ensure proper layering
-about_section.prepend(about_section_video);
-
-
-
-
-/* Play video in the background of the first section */
-const sevices_section_video = document.createElement("video");
-sevices_section_video.src = "web-freelancer-services.mp4"; // Set video source
-sevices_section_video.autoplay = true;
-sevices_section_video.loop = true;
-sevices_section_video.muted = true; // Required for autoplay
-sevices_section_video.playsInline = true; // Ensures it works on mobile
-
-// Style the video
-sevices_section_video.style.position = "absolute";
-sevices_section_video.style.top = "0";
-sevices_section_video.style.left = "0";
-sevices_section_video.style.width = "100%";
-sevices_section_video.style.height = "100%";
-sevices_section_video.style.objectFit = "cover";
-sevices_section_video.style.zIndex = "-1"; // Send it to the background
-sevices_section_video.style.opacity = "0.1"; // Send it to the background
-
-// Get the section and append the video as the first child
-const sevices_section = document.getElementById("web-freelancer-services");
-sevices_section.style.position = "relative"; // Ensure proper layering
-sevices_section.prepend(sevices_section_video);
-
-
-
-
-/* Play video in the background of the first section */
-const comment_section_video = document.createElement("video");
-comment_section_video.src = "web-freelancer-comment.mp4"; // Set video source
-comment_section_video.autoplay = true;
-comment_section_video.loop = true;
-comment_section_video.muted = true; // Required for autoplay
-comment_section_video.playsInline = true; // Ensures it works on mobile
-
-// Style the video
-comment_section_video.style.position = "absolute";
-comment_section_video.style.top = "0";
-comment_section_video.style.left = "0";
-comment_section_video.style.width = "100%";
-comment_section_video.style.height = "100%";
-comment_section_video.style.objectFit = "cover";
-comment_section_video.style.zIndex = "-1"; // Send it to the background
-comment_section_video.style.opacity = "0.1"; // Send it to the background
-
-// Get the section and append the video as the first child
-const comment_section = document.getElementById("web-freelancer-customers-comments-section");
-comment_section.style.position = "relative"; // Ensure proper layering
-comment_section.prepend(comment_section_video);
 
 
 

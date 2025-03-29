@@ -345,6 +345,7 @@ span {
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    overflow: hidden;
 }
 
 .web-freelancer-services-box:hover {
@@ -792,29 +793,46 @@ span {
 
 
 
-
 .animated-element {
     opacity: 0;
-    transform: translateX(100px);
-    /* Move out of view */
-    transition: transform 1.2s ease, opacity 1s ease;
+    transition: transform 1s ease, opacity 1s ease;
     position: relative;
-    /* Keep original spacing */
 }
 
-.animated-element:nth-child(even) {
+/* Slide in from left */
+.slide-left {
     transform: translateX(-100px);
-    /* Alternate direction */
 }
 
+/* Slide in from right */
+.slide-right {
+    transform: translateX(100px);
+}
+
+/* Apply animation */
 .animated-element.animate {
     opacity: 1;
     transform: translateX(0);
-    /* Move to correct position */
+}
+
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 
 
+
+
+
+/* Lastly make all sections full screen height size */
 section {
     height: 100vh;
     display: flex;
@@ -822,6 +840,18 @@ section {
     align-items: center;
     justify-content: center;
 }
+
+/* Initially hide all elements inside a section, except videos */
+section *:not(video) {
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+}
+
+/* When a section is active, reveal all inner elements (except videos) */
+section.active *:not(video) {
+    opacity: 1;
+}
+
 
 
 
