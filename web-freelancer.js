@@ -337,6 +337,7 @@ addBackgroundVideo("web-freelancer-home-section", "web-freelancer-bandar-zuhair.
 addBackgroundVideo("web-freelancer-about", "web-freelancer-about-bandar-zuhair.mp4");
 addBackgroundVideo("web-freelancer-services", "web-freelancer-services.mp4");
 addBackgroundVideo("web-freelancer-customers-comments-section", "web-freelancer-comment.mp4");
+addBackgroundVideo("web-freelancer-projects", "web-freelancer-projects.mp4");
 
 
 
@@ -372,16 +373,28 @@ const closeBtn = document.querySelector(".web-freelancer-close-service-details-b
 
 // Descriptions for each service
 const descriptions = {
+    /* Services */
     "High-Quality Web Development": "Bring any idea of yours to the market in a special way using AI.",
     "Google Search Ranking (SEO)": "Boost your online visibility and attract more potential customers with our expert SEO strategies. I optimize your website for higher rankings on Google, increasing organic traffic and ensuring that your business stands out in search results.",
-    "Business System Automation": "Simply I help you do what you do in a better, faster and easier way, streamline your operations, save time, and enhance efficiency with customized automation solutions. From lead management to customer engagement, I help you implement smart systems that reduce manual work and allow your business to scale effortlessly."
+    "Business System Automation": "Simply I help you do what you do in a better, faster and easier way, streamline your operations, save time, and enhance efficiency with customized automation solutions. From lead management to customer engagement, I help you implement smart systems that reduce manual work and allow your business to scale effortlessly.",
+
+    /* Projects */
+    "Affiliate Marketing Website Templates": "A collection of ready-to-use e-commerce website templates designed for affiliate marketing. Users can browse, select, and launch their own affiliate store with ease. Perfect for beginners and entrepreneurs looking to start their online business quickly and efficiently.",
+    "Koktel Indonesia All in One Place": "A one-stop website for everything you need! Order food, groceries, medicine, or book a villa—all in one place. Fast, easy, and works on any device. Safe payments, smooth browsing, and hassle-free service for businesses and customers.",
+    "Home Service Worker Recruitment Platform": "A simple website that helps families find and hire home workers easily. Users can choose a worker, contact us, and get help with the hiring process. We make sure all workers are trusted and ready to help with household tasks.",
 };
 
 // WhatsApp links for each service
 const serviceLinks = {
+    /* Services */
     "High-Quality Web Development": "https://wa.me/+966569446280?text=Hello%20Bandar,%20I'm%20interested%20in%20your%20High-Quality%20Web%20Development%20service",
     "Google Search Ranking (SEO)": "https://wa.me/+966569446280?text=Hello%20Bandar,%20I'm%20interested%20in%20your%20Google%20Search%20Ranking%20(SEO)%20service",
-    "Business System Automation": "https://wa.me/+966569446280?text=Hello%20Bandar,%20I'm%20interested%20in%20your%20Business%20Automation%20service"
+    "Business System Automation": "https://wa.me/+966569446280?text=Hello%20Bandar,%20I'm%20interested%20in%20your%20Business%20Automation%20service",
+
+    /* Projects */
+    "Affiliate Marketing Website Templates": "https://richegoo.com",
+    "Koktel Indonesia All in One Place": "https://koktel-indo.com",
+    "Home Service Worker Recruitment Platform": "https://indoforall.com",
 };
 
 serviceBoxes.forEach(box => {
@@ -392,7 +405,18 @@ serviceBoxes.forEach(box => {
         popupImg.src = imgSrc;
         popupTitle.innerText = title;
         popupDesc.innerText = descriptions[title] || "Learn more about our services.";
-        popupLink.href = serviceLinks[title] || "#"; // Set correct WhatsApp link
+        popupLink.href = serviceLinks[title] || "#"; // Set correct link
+
+        // Determine whether the title belongs to "Services" or "Projects"
+        if (descriptions[title]) {
+            if (serviceLinks[title].includes("wa.me")) {
+                popupLink.innerText = "Request This Service";
+            } else {
+                popupLink.innerText = "Visit The Website";
+            }
+        } else {
+            popupLink.innerText = "Learn More";
+        }
 
         // Show pop-up & overlay smoothly
         popup.classList.add("active");
