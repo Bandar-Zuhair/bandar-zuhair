@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap");
 
 @keyframes floatImage {
     0% {
@@ -14,7 +13,6 @@
         transform: translateY(0);
     }
 }
-
 
 * {
     margin: 0;
@@ -39,18 +37,6 @@ body {
     color: var(--text-color);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* Special Effects */
 /* Smooth Scrolling Divs */
 [data-scroll] {
@@ -66,8 +52,6 @@ body {
 [data-scroll-content] {
     will-change: transform;
 }
-
-
 
 /* Web Intro Animation */
 #web-freelancer-intro-animation-div {
@@ -101,30 +85,29 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 @keyframes scaleUp {
-    from { transform: scale(0.7); }
-    to { transform: scale(1); }
+    from {
+        transform: scale(0.7);
+    }
+    to {
+        transform: scale(1);
+    }
 }
 @keyframes slideUp {
-    from { transform: translateY(20px); }
-    to { transform: translateY(0); }
+    from {
+        transform: translateY(20px);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ****************** Header & NavBar Section ********************* */
 /* Wrapper for structural purposes */
@@ -183,23 +166,6 @@ body {
     display: none;
     /* Only show this on smaller screens via media query */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ****************** Home Section ********************* */
 .web-freelancer-home-section {
@@ -294,27 +260,6 @@ span {
     border: 0.2rem solid var(--main-color);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ****************** About Section ********************* */
 .web-freelancer-about {
     display: flex;
@@ -376,23 +321,6 @@ span {
     color: var(--main-color);
     border: 0.2rem solid var(--main-color);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ****************** Services Section ********************* */
 .web-freelancer-services {
@@ -460,21 +388,6 @@ span {
     font-size: 1.5rem;
     margin: 1rem 0 0.5rem 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ****************** Service Pop-up Styling ********************* */
 #web-freelancer-popup-overlay {
@@ -578,20 +491,6 @@ span {
     color: red;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ****************** Customers Cmments Section ********************* */
 #web-freelancer-customers-comments-section {
     padding-top: 0.5vmax;
@@ -604,7 +503,7 @@ span {
     text-align: center;
     margin-top: 20px;
     text-transform: uppercase;
-    background: linear-gradient(to right, #ff2f00, #FFC300);
+    background: linear-gradient(to right, #ff2f00, #ffc300);
     -webkit-background-clip: text;
     line-height: 1.5;
     background-clip: text;
@@ -617,7 +516,7 @@ span {
     display: block;
     width: 50px;
     height: 4px;
-    background: linear-gradient(to right, #FF5733, #FFC300);
+    background: linear-gradient(to right, #ff5733, #ffc300);
     margin: 10px auto 0;
     border-radius: 2px;
 }
@@ -790,7 +689,7 @@ span {
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    background-color: #4CAF50;
+    background-color: #4caf50;
     color: white;
     padding: 12px 18px;
     border-radius: 8px;
@@ -805,23 +704,6 @@ span {
     opacity: 1;
     transform: translate(-50%, -50%);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ****************** Footer Section ********************* */
 .web-freelancer-footer {
@@ -860,20 +742,6 @@ span {
     color: var(--text-color);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Elements Animation Styling */
 .animated-element {
     opacity: 0;
@@ -897,7 +765,6 @@ span {
     transform: translateX(0);
 }
 
-
 @keyframes fadeSlide {
     from {
         opacity: 0;
@@ -909,11 +776,6 @@ span {
         transform: translateX(0);
     }
 }
-
-
-
-
-
 
 /* Lastly make all sections full screen height size */
 section {
@@ -935,16 +797,9 @@ section.active *:not(video) {
     opacity: 1;
 }
 
-
-
-
-
-
-
 /* Media Queries */
 /* 1250px */
-@media(max-width:1250px) {
-
+@media (max-width: 1250px) {
     /* ****************** Header & NavBar Section ********************* */
     .web-freelancer-header {
         padding: 0 2%;
@@ -958,13 +813,6 @@ section.active *:not(video) {
         font-size: 2vw;
         margin-left: 1rem;
     }
-
-
-
-
-
-
-
 
     /* ****************** Home Section ********************* */
     .web-freelancer-home-section {
@@ -1013,13 +861,6 @@ section.active *:not(video) {
         font-size: 2vw;
     }
 
-
-
-
-
-
-
-
     /* ****************** About Section ********************* */
     .web-freelancer-about {
         padding: 1.5rem 0;
@@ -1060,13 +901,6 @@ section.active *:not(video) {
         margin-top: 1vw;
     }
 
-
-
-
-
-
-
-
     /* ****************** Services Section ********************* */
     .web-freelancer-services {
         padding: 1.5rem 0;
@@ -1091,15 +925,6 @@ section.active *:not(video) {
         font-size: 2vw;
     }
 
-
-
-
-
-
-
-
-
-
     /* ****************** Customers Comments Section ********************* */
     .web-freelancer-insert-comment-form-div {
         width: 80vw;
@@ -1110,10 +935,8 @@ section.active *:not(video) {
     }
 }
 
-
 /* Responsive Design */
 @media (max-width: 768px) {
-
     /* ****************** Header & NavBar Section ********************* */
     .web-freelancer-header {
         padding: 0 2%;
@@ -1151,11 +974,6 @@ section.active *:not(video) {
     .web-freelancer-navbar.active {
         right: 0;
     }
-
-
-
-
-
 
     /* ****************** Home Section ********************* */
     .web-freelancer-home-section-img {
@@ -1195,11 +1013,6 @@ section.active *:not(video) {
         font-size: 3vw;
     }
 
-
-
-
-
-
     /* ****************** About Section ********************* */
     .web-freelancer-about-img {
         margin-right: 1rem;
@@ -1224,12 +1037,6 @@ section.active *:not(video) {
     .web-freelancer-about-contact-me-btn {
         font-size: 3vw;
     }
-
-
-
-
-
-
 
     /* ****************** Services Section ********************* */
     .web-freelancer-services h1 {
@@ -1258,26 +1065,10 @@ section.active *:not(video) {
         font-size: 3vw;
     }
 
-
-
-
-
-
-
-
-
-
     /* ****************** Service Pop-up Styling ********************* */
     #web-freelancer-service-popup {
         width: 90%;
     }
-
-
-
-
-
-
-
 
     /* ****************** Customers Comments Section ********************* */
     .web-freelancer-customers-comments-div {
@@ -1310,28 +1101,14 @@ section.active *:not(video) {
     .web-freelancer-insert-comment-form-div h3 {
         font-size: 4vw;
     }
-
-
-
 }
 
 /* Responsive Adjustments */
 @media (max-width: 500px) {
-
     /* ****************** Smooth Scrolling Effect ********************* */
     [data-scroll] {
         padding-top: 2.5rem;
     }
-
-
-
-
-
-
-
-
-
-
 
     /* ****************** Header & NavBar Section ********************* */
     .web-freelancer-header {
@@ -1358,12 +1135,6 @@ section.active *:not(video) {
         font-size: 5.5vw;
         margin-left: 0.5rem;
     }
-
-
-
-
-
-
 
     /* ****************** Home Section ********************* */
     .web-freelancer-home-section {
@@ -1409,15 +1180,6 @@ section.active *:not(video) {
         font-size: 4vw;
     }
 
-
-
-
-
-
-
-
-
-
     /* ****************** About Section ********************* */
     .web-freelancer-about {
         padding: 0.5rem 0;
@@ -1447,12 +1209,6 @@ section.active *:not(video) {
         font-size: 4vw;
     }
 
-
-
-
-
-
-
     /* ****************** Services Section ********************* */
     .web-freelancer-services {
         padding: 0.5rem 0;
@@ -1475,12 +1231,6 @@ section.active *:not(video) {
     .web-freelancer-services-box h3 {
         font-size: 3.5vw;
     }
-
-
-
-
-
-
 
     /* ****************** Service Pop-up Styling ********************* */
     .web-freelancer-popup-content img {
@@ -1509,12 +1259,6 @@ section.active *:not(video) {
         color: #333;
     }
 
-
-
-
-
-
-
     /* ****************** Footer Section ********************* */
     .web-freelancer-footer-social i {
         width: 5.5vw;
@@ -1528,12 +1272,8 @@ section.active *:not(video) {
     }
 }
 
-
-
-
 /* Responsive Design */
 @media (max-width: 400px) {
-
     /* ****************** Customers Cmments Section ********************* */
     #web-freelancer-customers-comments-section h6 {
         font-size: 5.5vw;
@@ -1582,14 +1322,6 @@ section.active *:not(video) {
         font-size: 4vw;
     }
 
-
-
-
-
-
-
-
-
     /* ****************** Footer Section ********************* */
     .web-freelancer-footer-social i {
         width: 7.5vw;
@@ -1601,5 +1333,4 @@ section.active *:not(video) {
     .web-freelancer-footer-copyright {
         font-size: 4vw;
     }
-
 }
