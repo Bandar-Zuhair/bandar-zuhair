@@ -50,74 +50,6 @@ scrollToElement = function (elementIdName) {
 
 
 let sections = document.querySelectorAll("section");
-let isScrolling = false;
-const DEBOUNCE_TIME = 500; // Time before allowing another scroll
-const SWIPE_THRESHOLD = 30; // Minimum swipe distance to trigger scrolling
-
-// Function to find the closest section to scroll to
-function getClosestSectionIndex() {
-    let scrollPosition = window.scrollY + window.innerHeight / 2; // Get middle viewport position
-    let closestIndex = 0;
-    let closestDistance = Infinity;
-
-    sections.forEach((section, index) => {
-        let sectionMiddle = section.offsetTop + section.offsetHeight / 2;
-        let distance = Math.abs(scrollPosition - sectionMiddle);
-        if (distance < closestDistance) {
-            closestDistance = distance;
-            closestIndex = index;
-        }
-    });
-
-    return closestIndex;
-}
-
-// Function to scroll to a section smoothly
-function scrollToClosestSection(scrollDirection) {
-    if (isScrolling) return;
-
-    let currentIndex = getClosestSectionIndex();
-    let targetIndex = scrollDirection > 0 ? currentIndex + 1 : currentIndex - 1;
-
-    if (targetIndex < 0 || targetIndex >= sections.length) return; // Prevent out-of-bounds scrolling
-
-    let targetSection = sections[targetIndex];
-    window.scrollTo({
-        top: targetSection.offsetTop,
-        behavior: "smooth",
-    });
-
-    isScrolling = true;
-    setTimeout(() => (isScrolling = false), DEBOUNCE_TIME);
-}
-
-// Mouse Wheel Event
-function handleWheel(event) {
-    scrollToClosestSection(event.deltaY);
-}
-
-// Touch Events (Fix: Only Scroll on Swipe, Not Tap)
-let startY = 0;
-
-function handleTouchStart(event) {
-    startY = event.touches[0].clientY;
-}
-
-function handleTouchEnd(event) {
-    if (isScrolling) return;
-
-    let endY = event.changedTouches[0].clientY;
-    let distance = Math.abs(startY - endY);
-
-    if (distance > SWIPE_THRESHOLD) {
-        scrollToClosestSection(startY - endY);
-    }
-}
-
-// Attach event listeners
-window.addEventListener("wheel", handleWheel);
-window.addEventListener("touchstart", handleTouchStart);
-window.addEventListener("touchend", handleTouchEnd);
 
 // Function to assign alternating slide animations
 function assignSlideDirections() {
@@ -173,13 +105,60 @@ assignSlideDirections();
 createElementsSideSlideAnimation();
 
 
+let commentsSection = document.querySelector("#web-freelancer-customers-comments-area");
 
+// Function to assign alternating slide animations
+function setSlideDirectionsForComments() {
+    commentsSection.querySelectorAll(".animated-element").forEach((el, index) => {
+        el.classList.add(index % 2 === 0 ? "slide-left" : "slide-right");
+    });
+}
 
+// Function to reset and restart animations
+function restartCommentAnimations(container) {
+    let elements = container.querySelectorAll(".animated-element");
 
+    elements.forEach((el) => {
+        el.classList.remove("animate"); // Remove animation class
+        void el.offsetWidth; // Force reflow (restart animation)
+        setTimeout(() => el.classList.add("animate"), 50); // Re-add after a delay
+        console.log(`Animation applied to: ${el.innerText || "Element"}`);
+    });
+}
 
+/* Function to handle intersection and animations */
+function initCommentSectionAnimations() {
+    if (!commentsSection) return;
 
+    document.body.style.overflowX = "hidden";
+    document.documentElement.style.overflowX = "hidden";
 
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const innerElements = entry.target.querySelectorAll("*:not(video)"); // Select all elements except videos
 
+            if (entry.isIntersecting) {
+                // Reveal elements and trigger animation
+                innerElements.forEach(el => el.style.opacity = "1");
+                restartCommentAnimations(entry.target);
+            } else {
+                // Hide elements and reset animation
+                innerElements.forEach(el => {
+                    el.style.opacity = "0";
+                    el.classList.remove("animate"); // Ensure animation resets
+                });
+            }
+        });
+    }, { threshold: 0.4 });
+
+    observer.observe(commentsSection);
+}
+
+// Assign slide directions before animations start
+setSlideDirectionsForComments();
+
+/* Run animation logic */
+initCommentSectionAnimations();
 
 
 
@@ -261,10 +240,59 @@ function fetchReviews() {
             setTimeout(() => {
                 web_freelancer_customers_comments_area.classList.add("show");
             }, 100);
-            
 
-            assignSlideDirections();
-            createElementsSideSlideAnimation();
+
+
+
+
+            /* Enable the elements animation */
+            setSlideDirectionsForComments();
+            initCommentSectionAnimations();
+
+
+
+
+
+            /* Code to create smooth scrolling functionality */
+            let scrollContainer = document.querySelector("[data-scroll-content]");
+            let scrollPosition = 0;
+            let ease = 0.08; // Adjust this value for smoother or faster scrolling
+            let isScrolling = false;
+
+            function smoothScroll() {
+                scrollPosition += (window.scrollY - scrollPosition) * ease;
+                scrollContainer.style.transform = `translate3d(0, -${scrollPosition}px, 0)`;
+
+                if (Math.abs(window.scrollY - scrollPosition) > 0.5) {
+                    requestAnimationFrame(smoothScroll);
+                } else {
+                    isScrolling = false;
+                }
+            }
+
+            function startScroll() {
+                if (!isScrolling) {
+                    isScrolling = true;
+                    requestAnimationFrame(smoothScroll);
+                }
+            }
+
+            window.addEventListener("scroll", startScroll);
+            document.body.style.height = `${scrollContainer.getBoundingClientRect().height}px`;
+
+
+
+
+
+
+            /* Hide the intro animation div */
+            let introDiv = document.getElementById("web-freelancer-intro-animation-div");
+            introDiv.style.transition = "opacity 0.2s ease-out"; // Smooth transition
+            introDiv.style.opacity = "0"; // Start fading out
+
+            setTimeout(() => {
+                introDiv.style.visibility = "hidden"; // Hide after fade-out
+            }, 200); // Matches transition duration
         })
         .catch(error => console.error("Error fetching reviews:", error));
 }
@@ -290,6 +318,15 @@ function showSuccessNotification() {
 
 // Fetch Reviews on Page Load
 fetchReviews();
+
+
+
+
+
+
+/* Smooth Scrolling Function */
+
+
 
 
 
