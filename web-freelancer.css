@@ -68,18 +68,21 @@ body {
     opacity: 1;
     z-index: 999;
 }
+
 #web-freelancer-intro-animation-div img {
     width: 150px;
     opacity: 0;
     transform: scale(0.7);
     animation: fadeIn 1s ease-out 0.2s forwards, scaleUp 1s ease-out 0.2s forwards;
 }
+
 #web-freelancer-intro-animation-div p {
     font-size: 24px;
     opacity: 0;
     transform: translateY(20px);
     animation: fadeIn 1s ease-out 0.5s forwards, slideUp 1s ease-out 0.5s forwards;
 }
+
 #web-freelancer-intro-animation-div p:last-child {
     animation-delay: 0.7s;
 }
@@ -88,22 +91,27 @@ body {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
 }
+
 @keyframes scaleUp {
     from {
         transform: scale(0.7);
     }
+
     to {
         transform: scale(1);
     }
 }
+
 @keyframes slideUp {
     from {
         transform: translateY(20px);
     }
+
     to {
         transform: translateY(0);
     }
@@ -414,8 +422,7 @@ span {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.8);
-    width: 80%;
-    max-width: 800px;
+    width: 60vw;
     background: white;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
@@ -456,9 +463,10 @@ span {
 }
 
 .web-freelancer-popup-content p {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     margin: 10px 0;
-    color: #555;
+    color: black;
+    text-align: left;
 }
 
 .web-freelancer-popup-content a {
@@ -925,6 +933,11 @@ section.active *:not(video) {
         font-size: 2vw;
     }
 
+    /* ****************** Service Pop-up Styling ********************* */
+    #web-freelancer-service-popup {
+        width: 80%;
+    }
+
     /* ****************** Customers Comments Section ********************* */
     .web-freelancer-insert-comment-form-div {
         width: 80vw;
@@ -1067,7 +1080,19 @@ section.active *:not(video) {
 
     /* ****************** Service Pop-up Styling ********************* */
     #web-freelancer-service-popup {
-        width: 90%;
+        width: 100%;
+    }
+
+    .web-freelancer-popup-content img {
+        width: 60%;
+    }
+
+    .web-freelancer-popup-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .web-freelancer-popup-content p {
+        font-size: 0.8rem;
     }
 
     /* ****************** Customers Comments Section ********************* */
@@ -1243,7 +1268,7 @@ section.active *:not(video) {
     }
 
     .web-freelancer-popup-content p {
-        font-size: 0.8rem;
+        font-size: 0.6rem;
     }
 
     .web-freelancer-popup-content a {
