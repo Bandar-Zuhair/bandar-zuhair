@@ -238,38 +238,46 @@ function fetchReviews() {
             setSlideDirectionsForComments();
             initCommentSectionAnimations();
 
+            let scrollWrapper = document.querySelector("[data-scroll]");
             let scrollContainer = document.querySelector("[data-scroll-content]");
-            let scrollPosition = 0;
-            let ease = 0.08; // Adjust this value for smoother or faster scrolling
-            let isScrolling = false;
 
-            // Only apply smooth scroll if screen width is 500px or more
-            let enableSmoothScroll = window.innerWidth >= 500;
+            if (window.innerWidth < 500) {
+                if (scrollWrapper && scrollContainer) {
+                    // Move all children of scrollContainer outside of the wrappers
+                    while (scrollContainer.firstChild) {
+                        scrollWrapper.parentNode.insertBefore(scrollContainer.firstChild, scrollWrapper);
+                    }
 
-            function smoothScroll() {
-                scrollPosition += (window.scrollY - scrollPosition) * ease;
-                scrollContainer.style.transform = `translate3d(0, -${scrollPosition}px, 0)`;
-
-                if (Math.abs(window.scrollY - scrollPosition) > 0.5) {
-                    requestAnimationFrame(smoothScroll);
-                } else {
-                    isScrolling = false;
+                    // Now safely remove the wrapper divs
+                    scrollContainer.remove();
+                    scrollWrapper.remove();
                 }
-            }
+            } else {
+                // Smooth scrolling code for larger screens
+                let scrollPosition = 0;
+                let ease = 0.08;
+                let isScrolling = false;
 
-            function startScroll() {
-                if (!isScrolling) {
-                    isScrolling = true;
-                    requestAnimationFrame(smoothScroll);
+                function smoothScroll() {
+                    scrollPosition += (window.scrollY - scrollPosition) * ease;
+                    scrollContainer.style.transform = `translate3d(0, -${scrollPosition}px, 0)`;
+
+                    if (Math.abs(window.scrollY - scrollPosition) > 0.5) {
+                        requestAnimationFrame(smoothScroll);
+                    } else {
+                        isScrolling = false;
+                    }
                 }
-            }
 
-            if (enableSmoothScroll) {
+                function startScroll() {
+                    if (!isScrolling) {
+                        isScrolling = true;
+                        requestAnimationFrame(smoothScroll);
+                    }
+                }
+
                 window.addEventListener("scroll", startScroll);
                 document.body.style.height = `${scrollContainer.getBoundingClientRect().height}px`;
-            } else {
-                // Fallback for small screens: reset transforms if necessary
-                scrollContainer.style.transform = "none";
             }
 
             /* Disbale the button clicked to avoid double comments */

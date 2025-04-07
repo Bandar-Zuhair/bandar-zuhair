@@ -45,7 +45,6 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    padding-top: 3.5rem;
     overflow: hidden;
 }
 
@@ -181,6 +180,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 2rem 0;
+    margin-top: 3.5rem;
 }
 
 .web-freelancer-home-section-img {
@@ -1133,8 +1133,8 @@ section.active *:not(video) {
 /* Responsive Adjustments */
 @media (max-width: 500px) {
     /* ****************** Smooth Scrolling Effect ********************* */
-    [data-scroll] {
-        padding-top: 2.5rem;
+    .web-freelancer-home-section {
+        margin-top: 2.5rem;
     }
 
     /* ****************** Header & NavBar Section ********************* */
