@@ -238,11 +238,13 @@ function fetchReviews() {
             setSlideDirectionsForComments();
             initCommentSectionAnimations();
 
-            /* Code to create smooth scrolling functionality */
             let scrollContainer = document.querySelector("[data-scroll-content]");
             let scrollPosition = 0;
             let ease = 0.08; // Adjust this value for smoother or faster scrolling
             let isScrolling = false;
+
+            // Only apply smooth scroll if screen width is 500px or more
+            let enableSmoothScroll = window.innerWidth >= 500;
 
             function smoothScroll() {
                 scrollPosition += (window.scrollY - scrollPosition) * ease;
@@ -262,8 +264,13 @@ function fetchReviews() {
                 }
             }
 
-            window.addEventListener("scroll", startScroll);
-            document.body.style.height = `${scrollContainer.getBoundingClientRect().height}px`;
+            if (enableSmoothScroll) {
+                window.addEventListener("scroll", startScroll);
+                document.body.style.height = `${scrollContainer.getBoundingClientRect().height}px`;
+            } else {
+                // Fallback for small screens: reset transforms if necessary
+                scrollContainer.style.transform = "none";
+            }
 
             /* Disbale the button clicked to avoid double comments */
             document.getElementById("web-freelancer-comment-submit-button-id").style.userSelect = "auto";
