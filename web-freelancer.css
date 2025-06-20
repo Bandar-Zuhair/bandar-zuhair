@@ -106,7 +106,8 @@ header {
 
 /* Navigation Menu - Mobile First (Column) */
 .nav-menu {
-    list-style-type: none; /* Removes bullets */
+    list-style-type: none;
+    /* Removes bullets */
     position: fixed;
     top: 0;
     left: -100%;
@@ -114,7 +115,8 @@ header {
     height: 100vh;
     background-color: var(--card-bg);
     display: flex;
-    flex-direction: column; /* Stack items vertically on mobile */
+    flex-direction: column;
+    /* Stack items vertically on mobile */
     align-items: center;
     justify-content: center;
     padding: 20px;
@@ -124,7 +126,8 @@ header {
 }
 
 .nav-item {
-    margin: 15px 0; /* Vertical spacing between items on mobile */
+    margin: 15px 0;
+    /* Vertical spacing between items on mobile */
 }
 
 .nav-menu.active {
@@ -261,9 +264,17 @@ header {
 }
 
 @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
 
 .social-links {
@@ -295,31 +306,7 @@ header {
     transform: translateY(-3px);
 }
 
-/* Desktop Hero - Applies when screen is wider than 767px */
-@media not all and (max-width: 767px) {
-    .hero-content {
-        flex-direction: row;
-        text-align: left;
-        gap: 40px;
-    }
-    
-    .hero-text {
-        text-align: left;
-        padding-right: 20px;
-    }
-    
-    .hero-btns {
-        flex-direction: row;
-        justify-content: flex-start;
-    }
-    
-    .social-links {
-        position: absolute;
-        left: 0;
-        bottom: 50px;
-        flex-direction: column;
-    }
-}
+
 
 /* About Section - Mobile First */
 #about {
@@ -390,22 +377,6 @@ header {
     transition: width 1.5s ease;
 }
 
-/* Desktop About - Applies when screen is wider than 767px */
-@media not all and (max-width: 767px) {
-    .about-content {
-        flex-direction: row;
-        align-items: center;
-    }
-    
-    .about-text {
-        text-align: left;
-    }
-    
-    .about-text h3,
-    .about-text p {
-        text-align: left;
-    }
-}
 
 /* Services Section - Mobile First */
 #services {
@@ -447,19 +418,6 @@ header {
     font-size: 0.95rem;
 }
 
-/* Tablet Services - Applies when screen is wider than 575px */
-@media not all and (max-width: 575px) {
-    .services-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Desktop Services - Applies when screen is wider than 767px */
-@media not all and (max-width: 767px) {
-    .services-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
 
 /* Projects Section - Mobile First */
 #projects {
@@ -553,108 +511,184 @@ header {
     color: var(--secondary-color);
 }
 
-/* Tablet Projects - Applies when screen is wider than 575px */
-@media not all and (max-width: 575px) {
-    .projects-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
 
-/* Desktop Projects - Applies when screen is wider than 1199px */
-@media not all and (max-width: 1199px) {
-    .projects-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
+
+
+
+
+
+
+
+
+
 
 /* Testimonials Section - Mobile First */
 #testimonials {
     background-color: var(--background);
 }
 
-.testimonials-container {
-    width: 100%;
-    position: relative;
+/* Section Title - Mobile */
+.section-title h2 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
 }
 
-.testimonial-card {
-    background-color: var(--card-bg);
-    border-radius: 12px;
+/* Testimonials Container - Mobile (horizontal scroll) */
+#user_clint_rate_area {
+    display: flex;
+    gap: 15px;
+    padding: 15px 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+#user_clint_rate_area::-webkit-scrollbar {
+    display: none;
+}
+
+/* Testimonial Cards - Mobile */
+.user_card_rate_div {
+    position: relative;
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+    background: var(--card-bg);
+    border-radius: 10px;
     padding: 20px;
     box-shadow: var(--shadow);
-    margin: 0;
-    text-align: center;
-}
-
-.testimonial-text {
-    font-size: 1rem;
-    font-style: italic;
-    margin-bottom: 15px;
-    position: relative;
-    line-height: 1.5;
-}
-
-.testimonial-text::before,
-.testimonial-text::after {
-    content: '"';
-    font-size: 1.5rem;
-    color: var(--accent-color);
-    opacity: 0.5;
-    position: absolute;
-}
-
-.testimonial-text::before {
-    top: -10px;
-    left: -5px;
-}
-
-.testimonial-text::after {
-    bottom: -20px;
-    right: -5px;
-}
-
-.testimonial-author {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
-.author-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-}
-
-.author-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.author-info h4 {
-    font-size: 1rem;
-    margin-bottom: 5px;
-}
-
-.author-info p {
+.card_clint_rate_date_div h3 {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 0.85rem;
     color: #6b7280;
-    font-size: 0.8rem;
+    text-align: right;
 }
 
-.testimonial-rating {
+.card_clint_rate_info_div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card_clint_rate_info_div img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-color);
+}
+
+.card_clint_rate_info_div h4 {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.card_clint_rate_comment_div h5 {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #4b5563;
+    font-weight: 400;
+}
+
+.card_clint_rate_star_div {
+    position: absolute;
+    bottom: 0;
+    right: 15px;
     color: #f59e0b;
-    margin-top: 5px;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
 }
 
-/* Desktop Testimonials - Applies when screen is wider than 575px */
-@media not all and (max-width: 575px) {
-    .testimonial-author {
-        flex-direction: row;
-    }
+/* Comment Form - Mobile */
+.user_insert_comment_form_div {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 40px;
+    box-shadow: var(--shadow);
 }
+
+.user_insert_comment_form_div h3 {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+#user_comment_form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#user_comment_form label {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+#user_comment_form input,
+#user_comment_form textarea,
+#user_comment_form select {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+}
+
+#user_comment_form textarea {
+    min-height: 100px;
+}
+
+#user_comment_form button {
+    background: #f0f0f0;
+    color: black;
+    border: 0.5px solid black;
+    padding: 12px 20px;
+    font-size: 1rem;
+}
+
+/* Success Notification - Mobile */
+#new_comment_success_notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 16px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+/* Show animation */
+#new_comment_success_notification.show {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Footer - Mobile First */
 footer {
@@ -751,56 +785,8 @@ footer {
     font-size: 0.8rem;
 }
 
-/* Tablet Footer - Applies when screen is wider than 575px */
-@media not all and (max-width: 575px) {
-    .footer-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Desktop Footer - Applies when screen is wider than 767px */
-@media not all and (max-width: 767px) {
-    .footer-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* Large Desktop Footer - Applies when screen is wider than 991px */
-@media not all and (max-width: 991px) {
-    .nav-toggle {
-        display: none;
-    }
-    
-    .nav-menu {
-        position: static;
-        width: auto;
-        height: auto;
-        flex-direction: row; /* Align items horizontally on desktop */
-        background: transparent;
-        padding: 0;
-        box-shadow: none;
-    }
-    
-    .nav-item {
-        margin: 0 0 0 25px; /* Horizontal spacing between items on desktop */
-    }
-    
-    .nav-link {
-        font-size: 1rem;
-        padding: 10px 0;
-    }
 
 
-
-
-
-
-
-    /* Footer */
-    .footer-container {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
 
 /* Back to Top Button */
 .back-to-top {
@@ -834,25 +820,216 @@ footer {
     transform: translateY(-3px);
 }
 
-/* Section Title - Applies when screen is wider than 575px */
-@media not all and (max-width: 575px) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Hero Title - Applies when screen is wider than 399px */
+@media (min-width: 399px) {
+    .hero-text h1 {
+        font-size: 2.2rem;
+    }
+
+    .btn {
+        width: auto;
+    }
+
+    .hero-btns {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+/* Tablet Projects - Applies when screen is wider than 575px */
+@media (min-width: 575px) {
+    .projects-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .services-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .section-title h2 {
         font-size: 2.2rem;
     }
 }
 
-/* Hero Title - Applies when screen is wider than 399px */
-@media not all and (max-width: 399px) {
-    .hero-text h1 {
-        font-size: 2.2rem;
+
+
+/* Tablet Styles (min-width: 600px) */
+@media (min-width: 600px) {
+    #testimonials {
+        padding: 50px 0;
     }
-    
-    .btn {
-        width: auto;
+
+    .user_card_rate_div {
+        flex: 0 0 50%;
     }
-    
+
+    .user_insert_comment_form_div {
+        padding: 25px;
+    }
+}
+
+
+/* Desktop Hero - Applies when screen is wider than 767px */
+@media (min-width: 767px) {
+    .hero-content {
+        flex-direction: row;
+        text-align: left;
+        gap: 40px;
+    }
+
+    .hero-text {
+        text-align: left;
+        padding-right: 20px;
+    }
+
     .hero-btns {
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-start;
+    }
+
+    .social-links {
+        position: absolute;
+        left: 0;
+        bottom: 50px;
+        flex-direction: column;
+    }
+
+    .services-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .about-content {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .about-text {
+        text-align: left;
+    }
+
+    .about-text h3,
+    .about-text p {
+        text-align: left;
+    }
+
+
+
+    #user_comment_form {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+
+
+    .footer-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+
+/* Large Desktop Footer - Applies when screen is wider than 991px */
+@media (min-width: 991px) {
+    .nav-toggle {
+        display: none;
+    }
+
+    .nav-menu {
+        position: static;
+        width: auto;
+        height: auto;
+        flex-direction: row;
+        /* Align items horizontally on desktop */
+        background: transparent;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    .nav-item {
+        margin: 0 0 0 25px;
+        /* Horizontal spacing between items on desktop */
+    }
+
+    .nav-link {
+        font-size: 1rem;
+        padding: 10px 0;
+    }
+
+
+
+
+
+    .section-title h2 {
+        font-size: 2.2rem;
+    }
+
+    #user_clint_rate_area {
+        gap: 25px;
+    }
+
+    .user_insert_comment_form_div {
+        padding: 30px;
+    }
+
+
+
+
+    /* Footer */
+    .footer-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
+
+/* Desktop Projects - Applies when screen is wider than 1199px */
+@media (min-width: 1199px) {
+    .projects-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    #testimonials {
+        padding: 60px 0;
+    }
+
+    .user_card_rate_div {
+        flex: 0 0 35%;
     }
 }

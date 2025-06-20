@@ -156,8 +156,9 @@
                     </p>
                     <div class="hero-btns">
                         <a href="#projects" class="btn btn-primary">View My Work</a>
+                        <a href="Bandar-Zuhair-CV.pdf" download="Bandar-Zuhair-CV.pdf" class="btn btn-outline"
+                            target="_blank">View CV</a>
                         <a href="https://wa.me/966569446280/" class="btn btn-outline" target="_blank">Hire Me</a>
-                        <a  href="Bandar-Zuhair-CV.pdf" download="Bandar-Zuhair-CV.pdf" class="btn btn-outline" target="_blank">View CV</a>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -421,40 +422,80 @@
         </div>
     </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- Testimonials Section -->
     <section id="testimonials">
         <div class="container">
             <div class="section-title">
                 <h2>What <span style="color: var(--accent-color);">Clients</span> Say</h2>
             </div>
-            <div class="testimonials-container">
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        Working with John was an absolute pleasure. He delivered our e-commerce website ahead of
-                        schedule and it has significantly boosted our online sales. His attention to detail and
-                        problem-solving skills are exceptional.
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-                                alt="Sarah Johnson">
-                        </div>
-                        <div class="author-info">
-                            <h4>Sarah Johnson</h4>
-                            <p>CEO, Fashion Boutique</p>
-                            <div class="testimonial-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+
+
+            <div id="user_clint_rate_area">
+                <!-- JavaScript Dynamic Code -->
             </div>
+
+
+            <div class="user_insert_comment_form_div">
+                <h3>Share Your Thoughts</h3>
+                <form id="user_comment_form">
+                    <label for="user_comment_username">Name:</label>
+                    <input type="text" id="user_comment_username" required>
+
+                    <label for="user_comment_text">Comment:</label>
+                    <textarea id="user_comment_text" required></textarea>
+
+                    <label for="user_comment_stars">Rate:</label>
+                    <select id="user_comment_stars" required>
+                        <option value="5">★★★★★ (5)</option>
+                        <option value="4">★★★★☆ (4)</option>
+                        <option value="3">★★★☆☆ (3)</option>
+                        <option value="2">★★☆☆☆ (2)</option>
+                        <option value="1">★☆☆☆☆ (1)</option>
+                    </select>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+
+
+            <div id="new_comment_success_notification">You Comment Has Been Added Successfully</div>
+
         </div>
     </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Footer -->
     <footer id="contact">
@@ -515,6 +556,21 @@
         <i class="fas fa-arrow-up"></i>
     </a>
 
+
+
+
+
+
+
+    <!-- Import the Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+    <script>
+        // Your Supabase credentials
+        const supabaseUrl = "https://dkerfetnaquggtlpicul.supabase.co";
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRrZXJmZXRuYXF1Z2d0bHBpY3VsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY3ODY5MDUsImV4cCI6MjA2MjM2MjkwNX0.GMEkAcx_SWTjV_TdlhQNXzIzh9mDM_L2h8SaLXllQsw"; // use public key
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+    </script>
 
 
 
