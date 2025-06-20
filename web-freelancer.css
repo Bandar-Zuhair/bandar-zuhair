@@ -1,1367 +1,858 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap");
-
-@keyframes floatImage {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-1rem);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --accent-color: rgb(183, 0, 207);
+    --text-color: #1f2937;
+    --light-text: #f9fafb;
+    --background: #f8fafc;
+    --card-bg: #ffffff;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --transition: all 0.3s ease;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    text-decoration: none;
-    border: none;
-    outline: none;
-    scroll-behavior: smooth;
-    font-family: "Noto Kufi Arabic", sans-serif;
-}
-
-:root {
-    --bg-color: #fff;
-    --snd-bg-color: #dbfffef4;
-    --text-color: #000;
-    --main-color: #277979;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background: var(--bg-color);
+    background-color: var(--background);
     color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
 }
 
-/* Special Effects */
-/* Smooth Scrolling Divs */
-[data-scroll] {
-    position: fixed;
-    top: 0;
-    left: 0;
+.container {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
-[data-scroll-content] {
-    will-change: transform;
+section {
+    padding: 60px 0;
 }
 
-/* Web Intro Animation */
-#web-freelancer-intro-animation-div {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    opacity: 1;
-    z-index: 999;
-}
-
-#web-freelancer-intro-animation-div img {
-    width: 150px;
-    opacity: 0;
-    transform: scale(0.7);
-    animation: fadeIn 1s ease-out 0.2s forwards, scaleUp 1s ease-out 0.2s forwards;
-}
-
-#web-freelancer-intro-animation-div p {
-    font-size: 24px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 1s ease-out 0.5s forwards, slideUp 1s ease-out 0.5s forwards;
-}
-
-#web-freelancer-intro-animation-div p:last-child {
-    animation-delay: 0.7s;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes scaleUp {
-    from {
-        transform: scale(0.7);
-    }
-
-    to {
-        transform: scale(1);
-    }
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(20px);
-    }
-
-    to {
-        transform: translateY(0);
-    }
-}
-
-/* ****************** Header & NavBar Section ********************* */
-/* Wrapper for structural purposes */
-/* Ensure the header remains sticky and visible at all times */
-.web-freelancer-header {
-    position: fixed;
-    /* Make the header fixed at the top */
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: var(--main-color);
-    z-index: 1000;
-    /* Keep it above all other content */
-}
-
-/* Fixed header container */
-.web-freelancer-header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.8rem 5%;
-    height: 60px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Ensure logo is properly styled */
-.web-freelancer-logo {
-    font-size: 2rem;
-    color: var(--bg-color);
-    font-weight: 700;
-    cursor: default;
-    transition: 0.3s ease;
-}
-
-/* Navbar links */
-.web-freelancer-navbar a {
-    font-size: 1.5rem;
-    color: var(--bg-color);
-    margin-left: 1.5rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-
-/* Hover effect and active link */
-.web-freelancer-navbar a:hover,
-.web-freelancer-navbar a.active {
-    color: var(--text-color);
-}
-
-/* Menu icon for mobile view (initially hidden) */
-#web-freelancer-menu-icon {
-    font-size: 3rem;
-    color: var(--bg-color);
-    cursor: pointer;
-    display: none;
-    /* Only show this on smaller screens via media query */
-}
-
-/* ****************** Home Section ********************* */
-.web-freelancer-home-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 0;
-    margin-top: 3.5rem;
-}
-
-.web-freelancer-home-section-img {
-    margin-left: 2rem;
-}
-
-.web-freelancer-home-section-img img {
-    width: 25rem;
-    animation: floatImage 4s ease-in-out infinite;
-    border-radius: 50%;
-    border: 0.5px solid var(--main-color);
-}
-
-.web-freelancer-home-section-content {
-    margin-left: 3rem;
-}
-
-.web-freelancer-home-section-content h1 {
-    color: var(--main-color);
-    font-size: 1.5rem;
-    font-weight: 700;
-}
-
-.web-freelancer-home-section-content h2 {
-    font-size: 3.5rem;
-    font-weight: 700;
-}
-
-.web-freelancer-home-section-content h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-}
-
-.web-freelancer-home-section-content h3:nth-of-type(2) {
-    margin-bottom: 2rem;
-}
-
-span {
-    color: var(--main-color);
-}
-
-.web-freelancer-home-section-content p {
-    font-size: 1rem;
-}
-
-.web-freelancer-home-social-media i {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    border: 0.2rem solid var(--main-color);
-    border-radius: 50%;
-    color: var(--main-color);
-    margin-top: 1rem;
-    padding: 0.5rem;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-
-.web-freelancer-home-social-media i:hover {
-    background-color: var(--main-color);
-    color: var(--bg-color);
-}
-
-.web-freelancer-home-download-cv-btn {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: var(--main-color);
-    border-radius: 4rem;
-    box-shadow: none;
-    font-size: 1.5rem;
-    color: var(--bg-color);
-    letter-spacing: 0.1vw;
-    font-weight: 600;
-    transition: all 0.3s ease-in-out;
-    border: 0.2rem solid transparent;
-    margin-top: 0.5rem;
-}
-
-.web-freelancer-home-download-cv-btn:hover {
-    background-color: transparent;
-    color: var(--main-color);
-    border: 0.2rem solid var(--main-color);
-}
-
-/* ****************** About Section ********************* */
-.web-freelancer-about {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 0;
-}
-
-.web-freelancer-about-img {
-    margin-right: 2rem;
-}
-
-.web-freelancer-about-img img {
-    width: 25rem;
-    border-radius: 50%;
-    border: 0.5px solid var(--main-color);
-    animation: floatImage 4s ease-in-out infinite;
-}
-
-.web-freelancer-about-content {
-    padding: 0 4rem;
-}
-
-.web-freelancer-about-content h1 {
+.section-title {
     text-align: center;
-    font-size: 3rem;
-}
-
-.web-freelancer-about-content h2 {
-    text-align: left;
-    font-size: 2rem;
-}
-
-.web-freelancer-about-content h3 {
-    font-size: 3rem;
-}
-
-.web-freelancer-about-content p {
-    font-size: 1rem;
-}
-
-.web-freelancer-about-contact-me-btn {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: var(--main-color);
-    border-radius: 4rem;
-    box-shadow: none;
-    font-size: 1.5rem;
-    color: var(--bg-color);
-    letter-spacing: 0.1vw;
-    font-weight: 600;
-    transition: all 0.3s ease-in-out;
-    border: 0.2rem solid transparent;
-    margin-top: 0.5rem;
-}
-
-.web-freelancer-about-contact-me-btn:hover {
-    background-color: transparent;
-    color: var(--main-color);
-    border: 0.2rem solid var(--main-color);
-}
-
-/* ****************** Services Section ********************* */
-.web-freelancer-services {
-    padding: 2rem 0;
-}
-
-.web-freelancer-services h1 {
-    font-size: 3rem;
-    text-align: center;
-}
-
-.web-freelancer-services-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-bottom: 1rem;
-    align-items: center;
-}
-
-.web-freelancer-services-box {
-    background: var(--snd-bg-color);
-    width: 35rem;
-    height: fit-content;
-    margin: 0.5rem;
-    padding: 0 0.3rem;
-    border-radius: 2rem;
-    border: 0.2rem solid var(--bg-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    overflow: hidden;
-}
-
-.web-freelancer-services-box:hover {
-    transform: translateY(-5px);
-    border-color: var(--main-color);
-    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.2);
-}
-
-.web-freelancer-services-box img {
-    width: 100%;
-    border-radius: 2rem;
-}
-
-.web-freelancer-services-box i,
-.web-freelancer-services-box i {
-    font-size: 4rem;
-    color: var(--main-color);
-    background: transparent;
-    padding: 1rem;
-    border-radius: 50%;
-    transition: 0.3s ease-in-out;
-}
-
-.web-freelancer-services-box:hover i,
-.web-freelancer-services-box:hover i {
-    color: var(--main-color);
-}
-
-.web-freelancer-services-box h3 {
-    font-size: 1.5rem;
-    margin: 1rem 0 0.5rem 0;
-}
-
-/* ****************** Service Pop-up Styling ********************* */
-#web-freelancer-popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease-in-out;
-    z-index: 999;
-}
-
-/* Show overlay smoothly */
-#web-freelancer-popup-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-#web-freelancer-service-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
-    width: 60vw;
-    background: white;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    text-align: center;
-    padding: 20px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    z-index: 1000;
-}
-
-/* Show pop-up smoothly */
-#web-freelancer-service-popup.active {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    pointer-events: auto;
-}
-
-/* Pop-up Content */
-.web-freelancer-popup-content img {
-    width: 100%;
-    max-width: 350px;
-    border: 0.2rem solid var(--bg-color);
-    border-radius: 10px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-}
-
-.web-freelancer-popup-content img:hover {
-    transform: translateY(-5px);
-    border-color: var(--main-color);
-    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.2);
-}
-
-.web-freelancer-popup-content h3 {
-    font-size: 2rem;
-    margin: 15px 0;
-}
-
-.web-freelancer-popup-content p {
-    font-size: 1.1rem;
-    margin: 10px 0;
-    color: black;
-    text-align: left;
-}
-
-.web-freelancer-popup-content a {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 15px;
-    background: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: all 0.3s ease-in-out;
-}
-
-.web-freelancer-popup-content a:hover {
-    background: #0056b3;
-}
-
-/* Close Button */
-.web-freelancer-close-service-details-box-btn {
-    position: absolute;
-    top: -10px;
-    right: 15px;
-    font-size: 3rem;
-    cursor: pointer;
-    color: #333;
-    transition: all 0.2s ease-in-out;
-}
-
-.web-freelancer-close-service-details-box-btn:hover {
-    color: red;
-}
-
-/* ****************** Customers Cmments Section ********************* */
-#web-freelancer-customers-comments-section {
-    padding-top: 0.5vmax;
-}
-
-#web-freelancer-customers-comments-section h6 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #2c3e50;
-    text-align: center;
-    margin-top: 20px;
-    text-transform: uppercase;
-    background: linear-gradient(to right, #ff2f00, #ffc300);
-    -webkit-background-clip: text;
-    line-height: 1.5;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    margin-bottom: 40px;
     position: relative;
 }
 
-#web-freelancer-customers-comments-section h6::after {
-    content: "";
-    display: block;
-    width: 50px;
-    height: 4px;
-    background: linear-gradient(to right, #ff5733, #ffc300);
-    margin: 10px auto 0;
-    border-radius: 2px;
+.section-title h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: inline-block;
+    position: relative;
+    padding-bottom: 12px;
 }
 
-#web-freelancer-customers-comments-area {
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--accent-color);
+    border-radius: 3px;
+}
+
+/* Header & Navigation - Mobile First */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 100%;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
     padding: 10px 0;
+}
+
+.header-container {
     display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    box-shadow: 0 0 1px 0.5px black;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
 }
 
-#web-freelancer-customers-comments-area.show {
-    opacity: 1;
-    transform: translateY(0);
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
 }
 
-.web-freelancer-customers-comments-div {
-    background: rgb(46, 46, 46);
-    color: white;
-    min-width: 35rem;
-    margin: 0 10px;
-    padding: 8px;
+.logo span {
+    color: var(--accent-color);
+}
+
+.nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Navigation Menu - Mobile First (Column) */
+.nav-menu {
+    list-style-type: none; /* Removes bullets */
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--card-bg);
+    display: flex;
+    flex-direction: column; /* Stack items vertically on mobile */
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transition: var(--transition);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.nav-item {
+    margin: 15px 0; /* Vertical spacing between items on mobile */
+}
+
+.nav-menu.active {
+    left: 0;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: var(--transition);
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: var(--transition);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-color);
+}
+
+/* Hero Section - Mobile First */
+#home {
+    height: auto;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(255, 255, 255, 1) 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0 40px;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 30px;
+}
+
+.hero-text {
+    text-align: center;
+    padding: 0 10px;
+}
+
+.hero-text h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.hero-text h1 span {
+    color: var(--accent-color);
+}
+
+.hero-text p {
+    font-size: 1rem;
+    margin-bottom: 25px;
+    color: #4b5563;
+}
+
+.hero-btns {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    border-radius: 3px;
-    box-shadow: 0 0 3px 0.5px rgb(0, 162, 255);
-    transition: all 0.5s ease-in-out;
-    scroll-snap-align: center;
-}
-
-.web-freelancer-customers-comments-div:hover {
-    box-shadow: 0 0 3px 0.5px rgb(0, 255, 0);
-}
-
-.web-freelancer-customers-comments-date-div {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.web-freelancer-customers-comments-date-div h3 {
-    font-size: 1rem;
-    font-weight: 200;
-}
-
-.web-freelancer-customers-comments-info-div {
-    display: flex;
-    justify-content: flex-start;
+    gap: 10px;
     align-items: center;
 }
 
-.web-freelancer-customers-comments-info-div img {
-    width: 3.5rem;
+.btn {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: pointer;
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+}
+
+.btn-outline {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    transform: translateY(-3px);
+}
+
+.hero-image {
+    text-align: center;
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 15px -5px rgba(0, 0, 0, 0.1);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.social-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    position: static;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
+    background-color: var(--card-bg);
+    color: var(--primary-color);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-decoration: none;
 }
 
-.web-freelancer-customers-comments-info-div h4 {
-    font-size: 1rem;
-    margin-left: 10px;
+.social-link:hover {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    transform: translateY(-3px);
 }
 
-.web-freelancer-customers-comments-comment-div {
+/* Desktop Hero - Applies when screen is wider than 767px */
+@media not all and (max-width: 767px) {
+    .hero-content {
+        flex-direction: row;
+        text-align: left;
+        gap: 40px;
+    }
+    
+    .hero-text {
+        text-align: left;
+        padding-right: 20px;
+    }
+    
+    .hero-btns {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    
+    .social-links {
+        position: absolute;
+        left: 0;
+        bottom: 50px;
+        flex-direction: column;
+    }
+}
+
+/* About Section - Mobile First */
+#about {
+    background-color: var(--card-bg);
+}
+
+.about-content {
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
     align-items: center;
+    gap: 30px;
 }
 
-.web-freelancer-customers-comments-comment-div h5 {
-    font-size: 1.3rem;
-    font-weight: 300;
-    margin-top: 10px;
+.about-image {
     text-align: center;
-    line-height: 1.4;
+    width: 100%;
+    max-width: 300px;
 }
 
-.indoforall-client-rate-star-div {
-    margin-top: 10px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    font-size: 2rem;
-    color: gold;
+.about-image img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
 }
 
-#web-freelancer-customers-comments-area::-webkit-scrollbar {
-    display: none;
+.about-text {
+    width: 100%;
 }
 
-.web-freelancer-insert-comment-form-div {
-    background: rgba(255, 255, 255, 0.5);
-    width: 55vw;
-    margin: 10px auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.web-freelancer-insert-comment-form-div h3 {
+.about-text h3 {
     font-size: 1.5rem;
-    color: #333;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.about-text p {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.skills {
+    margin-top: 25px;
+}
+
+.skill-item {
     margin-bottom: 15px;
 }
 
-#web-freelancer-comment-form {
+.skill-info {
     display: flex;
-    flex-direction: column;
-    gap: 15px 0;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
 }
 
-#web-freelancer-comment-form label {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #000000;
-    text-align: left;
-    direction: ltr;
+.skill-bar {
+    height: 8px;
+    background-color: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
-#web-freelancer-comment-form input {
-    height: 2.5rem;
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: 4px;
+    transition: width 1.5s ease;
+}
+
+/* Desktop About - Applies when screen is wider than 767px */
+@media not all and (max-width: 767px) {
+    .about-content {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .about-text {
+        text-align: left;
+    }
+    
+    .about-text h3,
+    .about-text p {
+        text-align: left;
+    }
+}
+
+/* Services Section - Mobile First */
+#services {
+    background-color: var(--background);
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.service-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
     text-align: center;
-    align-content: center;
 }
 
-#web-freelancer-comment-form textarea {
-    text-align: center;
-    align-content: center;
-    height: 3rem;
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -5px rgba(0, 0, 0, 0.1);
 }
 
-#web-freelancer-comment-form button {
-    background: linear-gradient(to top, rgb(0, 52, 82), rgb(0, 127, 200));
-    color: white;
-    font-size: 1rem;
-    padding: 5px 0;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
+.service-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
 }
 
-#web-freelancer-comment-username,
-#web-freelancer-comment-text,
-#web-freelancer-comment-stars,
-#web-freelancer-comment-contact {
+.service-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    font-size: 0.95rem;
+}
+
+/* Tablet Services - Applies when screen is wider than 575px */
+@media not all and (max-width: 575px) {
+    .services-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop Services - Applies when screen is wider than 767px */
+@media not all and (max-width: 767px) {
+    .services-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Projects Section - Mobile First */
+#projects {
+    background-color: var(--card-bg);
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.project-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -5px rgba(0, 0, 0, 0.1);
+}
+
+.project-image {
+    height: 180px;
+    overflow: hidden;
+}
+
+.project-image img {
     width: 100%;
-    padding: 10px 0;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    font-size: 14px;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
 }
 
-#web-freelancer-comment-text {
-    min-height: 80px;
-    resize: vertical;
+.project-card:hover .project-image img {
+    transform: scale(1.05);
 }
 
-#web-freelancer-comment-stars {
-    cursor: pointer;
+.project-info {
+    padding: 15px;
 }
 
-#web-freelancer-comment-success-notification {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    background-color: #4caf50;
-    color: white;
-    padding: 12px 18px;
-    border-radius: 8px;
-    font-size: 16px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    display: none;
-    opacity: 0;
-    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+.project-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
 }
 
-#web-freelancer-comment-success-notification.show {
-    opacity: 1;
-    transform: translate(-50%, -50%);
+.project-info p {
+    margin-bottom: 12px;
+    color: #4b5563;
+    font-size: 0.9rem;
 }
 
-/* ****************** Footer Section ********************* */
-.web-freelancer-footer {
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.project-tag {
+    background-color: #e0e7ff;
+    color: var(--primary-color);
+    padding: 4px 8px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.project-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.project-link:hover {
+    color: var(--secondary-color);
+}
+
+/* Tablet Projects - Applies when screen is wider than 575px */
+@media not all and (max-width: 575px) {
+    .projects-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop Projects - Applies when screen is wider than 1199px */
+@media not all and (max-width: 1199px) {
+    .projects-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Testimonials Section - Mobile First */
+#testimonials {
+    background-color: var(--background);
+}
+
+.testimonials-container {
+    width: 100%;
     position: relative;
-    bottom: 0;
-    width: 100%;
-    padding: 5rem 0;
-    background: var(--bg-color);
 }
 
-.web-freelancer-footer-social {
+.testimonial-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    margin: 0;
     text-align: center;
-    padding-bottom: 5px;
-    color: var(--main-color);
 }
 
-.web-freelancer-footer-social i {
-    color: var(--main-color);
+.testimonial-text {
+    font-size: 1rem;
+    font-style: italic;
+    margin-bottom: 15px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.testimonial-text::before,
+.testimonial-text::after {
+    content: '"';
     font-size: 1.5rem;
-    margin: 0 0.5rem;
-    padding: 0.5rem;
-    display: inline-block;
-    text-align: center;
-    border-radius: 50%;
-    transition: 0.3s ease-in-out;
+    color: var(--accent-color);
+    opacity: 0.5;
+    position: absolute;
 }
 
-.web-freelancer-footer-social i:hover {
-    background-color: var(--main-color);
-    color: var(--bg-color);
+.testimonial-text::before {
+    top: -10px;
+    left: -5px;
 }
 
-.web-freelancer-footer-copyright {
-    font-size: 1rem;
-    text-align: center;
-    color: var(--text-color);
+.testimonial-text::after {
+    bottom: -20px;
+    right: -5px;
 }
 
-/* Elements Animation Styling */
-.animated-element {
-    opacity: 0;
-    transition: transform 1s ease, opacity 1s ease;
-    position: relative;
-}
-
-/* Slide in from left */
-.slide-left {
-    transform: translateX(-100px);
-}
-
-/* Slide in from right */
-.slide-right {
-    transform: translateX(100px);
-}
-
-/* Apply animation */
-.animated-element.animate {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-@keyframes fadeSlide {
-    from {
-        opacity: 0;
-        transform: translateX(100px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* Lastly make all sections full screen height size */
-section {
-    min-height: 80vh;
+.testimonial-author {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 10px;
 }
 
-/* Initially hide all elements inside a section, except videos */
-section *:not(video) {
-    opacity: 0;
-    transition: opacity 0.6s ease-in-out;
+.author-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
-/* When a section is active, reveal all inner elements (except videos) */
-section.active *:not(video) {
-    opacity: 1;
+.author-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-/* Media Queries */
-/* 1250px */
-@media (max-width: 1250px) {
-    /* ****************** Header & NavBar Section ********************* */
-    .web-freelancer-header {
-        padding: 0 2%;
-    }
-
-    .web-freelancer-logo {
-        font-size: 3vw;
-    }
-
-    .web-freelancer-navbar a {
-        font-size: 2vw;
-        margin-left: 1rem;
-    }
-
-    /* ****************** Home Section ********************* */
-    .web-freelancer-home-section {
-        padding: 1.5rem 0;
-    }
-
-    .web-freelancer-home-section-img {
-        margin-left: 1.5rem;
-    }
-
-    .web-freelancer-home-section-img img {
-        width: 30vw;
-    }
-
-    .web-freelancer-home-section-content {
-        margin-left: 2.5rem;
-    }
-
-    .web-freelancer-home-section-content h1 {
-        font-size: 2.5vw;
-    }
-
-    .web-freelancer-home-section-content h2 {
-        font-size: 4.5vw;
-    }
-
-    .web-freelancer-home-section-content h3 {
-        font-size: 2.5vw;
-    }
-
-    .web-freelancer-home-section-content h3:nth-of-type(2) {
-        margin-bottom: 1.5rem;
-    }
-
-    .web-freelancer-home-section-content p {
-        font-size: 1.5vw;
-    }
-
-    .web-freelancer-home-social-media * {
-        width: 2.5vw;
-        height: 2.5vw;
-    }
-
-    .web-freelancer-home-download-cv-btn {
-        padding: 0.5vw 1vw;
-        font-size: 2vw;
-    }
-
-    /* ****************** About Section ********************* */
-    .web-freelancer-about {
-        padding: 1.5rem 0;
-    }
-
-    .web-freelancer-about-img {
-        margin-right: 1.5rem;
-    }
-
-    .web-freelancer-about-img img {
-        width: 30vw;
-    }
-
-    .web-freelancer-about-content {
-        padding-left: 2rem;
-        padding-right: 0.5rem;
-    }
-
-    .web-freelancer-about-content h1 {
-        font-size: 4vw;
-    }
-
-    .web-freelancer-about-content h2 {
-        font-size: 3vw;
-    }
-
-    .web-freelancer-about-content h3 {
-        font-size: 4vw;
-    }
-
-    .web-freelancer-about-content p {
-        font-size: 1.5vw;
-    }
-
-    .web-freelancer-about-contact-me-btn {
-        padding: 0.5vw 1vw;
-        font-size: 2vw;
-        margin-top: 1vw;
-    }
-
-    /* ****************** Services Section ********************* */
-    .web-freelancer-services {
-        padding: 1.5rem 0;
-    }
-
-    .web-freelancer-services h1 {
-        font-size: 4vw;
-    }
-
-    .web-freelancer-services-box {
-        width: 40vw;
-        padding: 1vw;
-    }
-
-    .web-freelancer-services-box i,
-    .web-freelancer-services-box i {
-        font-size: 5vw;
-        padding: 1vw;
-    }
-
-    .web-freelancer-services-box h3 {
-        font-size: 2vw;
-    }
-
-    /* ****************** Service Pop-up Styling ********************* */
-    #web-freelancer-service-popup {
-        width: 80%;
-    }
-
-    /* ****************** Customers Comments Section ********************* */
-    .web-freelancer-insert-comment-form-div {
-        width: 80vw;
-    }
-
-    #web-freelancer-comment-form {
-        gap: 5px 0;
-    }
+.author-info h4 {
+    font-size: 1rem;
+    margin-bottom: 5px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    /* ****************** Header & NavBar Section ********************* */
-    .web-freelancer-header {
-        padding: 0 2%;
-    }
+.author-info p {
+    color: #6b7280;
+    font-size: 0.8rem;
+}
 
-    .web-freelancer-logo {
-        font-size: 4vw;
-    }
+.testimonial-rating {
+    color: #f59e0b;
+    margin-top: 5px;
+    font-size: 0.9rem;
+}
 
-    #web-freelancer-menu-icon {
-        display: block;
-        font-size: 5vw;
-    }
-
-    .web-freelancer-navbar {
-        position: absolute;
-        top: 100%;
-        right: -100%;
-        width: 255px;
-        max-width: 100%;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        background: var(--main-color);
-        transition: all 0.5s ease;
-        backdrop-filter: blur(10px);
-    }
-
-    .web-freelancer-navbar a {
-        display: block;
-        padding: 1.5vw 0;
-        font-size: 3.5vw;
-    }
-
-    .web-freelancer-navbar.active {
-        right: 0;
-    }
-
-    /* ****************** Home Section ********************* */
-    .web-freelancer-home-section-img {
-        margin-left: 1rem;
-    }
-
-    .web-freelancer-home-section-content {
-        margin-left: 2rem;
-    }
-
-    .web-freelancer-home-section-content h1 {
-        font-size: 3vw;
-    }
-
-    .web-freelancer-home-section-content h2 {
-        font-size: 5vw;
-    }
-
-    .web-freelancer-home-section-content h3 {
-        font-size: 3vw;
-    }
-
-    .web-freelancer-home-section-content h3:nth-of-type(2) {
-        margin-bottom: 1rem;
-    }
-
-    .web-freelancer-home-section-content p {
-        font-size: 2vw;
-    }
-
-    .web-freelancer-home-social-media * {
-        width: 3vw;
-        height: 3vw;
-    }
-
-    .web-freelancer-home-download-cv-btn {
-        font-size: 3vw;
-    }
-
-    /* ****************** About Section ********************* */
-    .web-freelancer-about-img {
-        margin-right: 1rem;
-    }
-
-    .web-freelancer-about-content h1 {
-        font-size: 4.5vw;
-    }
-
-    .web-freelancer-about-content h2 {
-        font-size: 3.5vw;
-    }
-
-    .web-freelancer-about-content h3 {
-        font-size: 4.5vw;
-    }
-
-    .web-freelancer-about-content p {
-        font-size: 2vw;
-    }
-
-    .web-freelancer-about-contact-me-btn {
-        font-size: 3vw;
-    }
-
-    /* ****************** Services Section ********************* */
-    .web-freelancer-services h1 {
-        font-size: 5vw;
-    }
-
-    .web-freelancer-services-box {
-        width: 45vw;
-        padding: 0.5vw;
+/* Desktop Testimonials - Applies when screen is wider than 575px */
+@media not all and (max-width: 575px) {
+    .testimonial-author {
         flex-direction: row;
-        border-radius: 0.5rem;
-    }
-
-    .web-freelancer-services-box img {
-        width: 50%;
-        border-radius: 0.5rem;
-    }
-
-    .web-freelancer-services-box i,
-    .web-freelancer-services-box i {
-        font-size: 5vw;
-        padding: 1vw;
-    }
-
-    .web-freelancer-services-box h3 {
-        font-size: 3vw;
-    }
-
-    /* ****************** Service Pop-up Styling ********************* */
-    #web-freelancer-service-popup {
-        width: 100%;
-    }
-
-    .web-freelancer-popup-content img {
-        width: 60%;
-    }
-
-    .web-freelancer-popup-content h3 {
-        font-size: 1.2rem;
-    }
-
-    .web-freelancer-popup-content p {
-        font-size: 0.8rem;
-    }
-
-    /* ****************** Customers Comments Section ********************* */
-    .web-freelancer-customers-comments-div {
-        min-width: 65vw;
-        margin: 0 8px;
-        padding: 5px 2px;
-    }
-
-    .web-freelancer-customers-comments-date-div h3 {
-        font-size: 2.5vw;
-    }
-
-    .web-freelancer-customers-comments-info-div img {
-        width: 5.5vw;
-    }
-
-    .web-freelancer-customers-comments-info-div h4 {
-        font-size: 2.5vw;
-    }
-
-    .web-freelancer-customers-comments-comment-div h5 {
-        font-size: 2.5vw;
-    }
-
-    .indoforall-client-rate-star-div {
-        margin-top: 8px;
-        font-size: 3.5vw;
-    }
-
-    .web-freelancer-insert-comment-form-div h3 {
-        font-size: 4vw;
     }
 }
 
-/* Responsive Adjustments */
-@media (max-width: 500px) {
-    /* ****************** Smooth Scrolling Effect ********************* */
-    .web-freelancer-home-section {
-        margin-top: 2.5rem;
-    }
+/* Footer - Mobile First */
+footer {
+    background-color: #1e293b;
+    color: var(--light-text);
+    padding: 40px 0 20px;
+}
 
-    /* ****************** Header & NavBar Section ********************* */
-    .web-freelancer-header {
-        padding: 0 2%;
-    }
+.footer-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
 
-    .web-freelancer-logo {
-        font-size: 4vw;
-    }
+.footer-col h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 8px;
+}
 
-    /* Fixed header container */
-    .web-freelancer-header-container {
-        height: 45px;
-        padding: 0 5%;
-    }
+.footer-col h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--accent-color);
+}
 
-    #web-freelancer-menu-icon {
-        font-size: 7.5vw;
-    }
+.footer-col p {
+    margin-bottom: 12px;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
 
-    .web-freelancer-navbar a {
-        display: block;
-        padding: 1vw 0;
-        font-size: 5.5vw;
-        margin-left: 0.5rem;
-    }
+.footer-links {
+    list-style: none;
+}
 
-    /* ****************** Home Section ********************* */
-    .web-freelancer-home-section {
-        padding: 0.5rem 0;
-    }
+.footer-links li {
+    margin-bottom: 8px;
+}
 
-    .web-freelancer-home-section-img {
-        margin-left: 0.1rem;
-    }
+.footer-links a {
+    color: var(--light-text);
+    opacity: 0.8;
+    text-decoration: none;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
 
-    .web-freelancer-home-section-content {
-        margin-left: 0.3rem;
-        margin-right: 0.2rem;
-    }
+.footer-links a:hover {
+    opacity: 1;
+    padding-left: 5px;
+    color: rgb(0, 255, 0);
+}
 
-    .web-freelancer-home-section-content h1 {
-        font-size: 5.5vw;
-    }
+.footer-social {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+}
 
-    .web-freelancer-home-section-content h2 {
-        font-size: 7.5vw;
-    }
+.footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--light-text);
+    transition: var(--transition);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
 
-    .web-freelancer-home-section-content h3 {
-        font-size: 4.5vw;
-    }
+.footer-social a:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+}
 
-    .web-freelancer-home-section-content h3:nth-of-type(2) {
-        margin-bottom: 0.5rem;
-    }
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-    .web-freelancer-home-section-content p {
-        font-size: 2.8vw;
-    }
+.footer-bottom p {
+    opacity: 0.7;
+    font-size: 0.8rem;
+}
 
-    .web-freelancer-home-social-media * {
-        width: 6vw;
-        height: 6vw;
-        padding: 0.3rem;
+/* Tablet Footer - Applies when screen is wider than 575px */
+@media not all and (max-width: 575px) {
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
     }
+}
 
-    .web-freelancer-home-download-cv-btn {
-        font-size: 4vw;
+/* Desktop Footer - Applies when screen is wider than 767px */
+@media not all and (max-width: 767px) {
+    .footer-container {
+        grid-template-columns: repeat(3, 1fr);
     }
+}
 
-    /* ****************** About Section ********************* */
-    .web-freelancer-about {
-        padding: 0.5rem 0;
+/* Large Desktop Footer - Applies when screen is wider than 991px */
+@media not all and (max-width: 991px) {
+    .nav-toggle {
+        display: none;
     }
-
-    .web-freelancer-about-img {
-        margin-right: 0.1rem;
+    
+    .nav-menu {
+        position: static;
+        width: auto;
+        height: auto;
+        flex-direction: row; /* Align items horizontally on desktop */
+        background: transparent;
+        padding: 0;
+        box-shadow: none;
     }
-
-    .web-freelancer-about-content {
-        padding: 0 0.3rem;
+    
+    .nav-item {
+        margin: 0 0 0 25px; /* Horizontal spacing between items on desktop */
     }
-
-    .web-freelancer-about-content h1 {
-        font-size: 5.5vw;
-    }
-
-    .web-freelancer-about-content h3 {
-        font-size: 5.5vw;
-    }
-
-    .web-freelancer-about-content p {
-        font-size: 3vw;
-    }
-
-    .web-freelancer-about-contact-me-btn {
-        font-size: 4vw;
-    }
-
-    /* ****************** Services Section ********************* */
-    .web-freelancer-services {
-        padding: 0.5rem 0;
-    }
-
-    .web-freelancer-services h1 {
-        font-size: 6vw;
-    }
-
-    .web-freelancer-services-box {
-        width: 95vw;
-        margin: 0.5vw;
-    }
-
-    .web-freelancer-services-box i,
-    .web-freelancer-services-box i {
-        font-size: 6vw;
-    }
-
-    .web-freelancer-services-box h3 {
-        font-size: 3.5vw;
-    }
-
-    /* ****************** Service Pop-up Styling ********************* */
-    .web-freelancer-popup-content img {
-        width: 80%;
-    }
-
-    .web-freelancer-popup-content h3 {
+    
+    .nav-link {
         font-size: 1rem;
-        margin: 5px 0;
+        padding: 10px 0;
     }
 
-    .web-freelancer-popup-content p {
-        font-size: 0.6.5rem;
-    }
 
-    .web-freelancer-popup-content a {
-        margin-top: 5px;
-        padding: 5px 10px;
-    }
 
-    .web-freelancer-close-service-details-box-btn {
-        top: -5px;
-        right: 10px;
-        font-size: 2rem;
-        cursor: pointer;
-        color: #333;
-    }
 
-    /* ****************** Footer Section ********************* */
-    .web-freelancer-footer-social i {
-        width: 5.5vw;
-        height: 5.5vw;
-        margin: 0 0.5rem;
-        padding: 0.3rem;
-    }
 
-    .web-freelancer-footer-copyright {
-        font-size: 3.5vw;
+
+
+    /* Footer */
+    .footer-container {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
-/* Responsive Design */
-@media (max-width: 400px) {
-    /* ****************** Customers Cmments Section ********************* */
-    #web-freelancer-customers-comments-section h6 {
-        font-size: 5.5vw;
-    }
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 999;
+    font-size: 1rem;
+}
 
-    .web-freelancer-customers-comments-div {
-        min-width: 90vw;
-        margin: 0 5px;
-    }
+.back-to-top.active {
+    opacity: 1;
+    visibility: visible;
+}
 
-    .web-freelancer-customers-comments-date-div h3 {
-        font-size: 3.5vw;
-    }
+.back-to-top:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+}
 
-    .web-freelancer-customers-comments-info-div img {
-        width: 8.5vw;
+/* Section Title - Applies when screen is wider than 575px */
+@media not all and (max-width: 575px) {
+    .section-title h2 {
+        font-size: 2.2rem;
     }
+}
 
-    .web-freelancer-customers-comments-info-div h4 {
-        font-size: 3.5vw;
+/* Hero Title - Applies when screen is wider than 399px */
+@media not all and (max-width: 399px) {
+    .hero-text h1 {
+        font-size: 2.2rem;
     }
-
-    .web-freelancer-customers-comments-comment-div h5 {
-        font-size: 3.5vw;
+    
+    .btn {
+        width: auto;
     }
-
-    .indoforall-client-rate-star-div {
-        margin-top: 8px;
-        font-size: 5vw;
-    }
-
-    .web-freelancer-insert-comment-form-div {
-        width: 100vw;
-        padding: 5px 10px;
-    }
-
-    .web-freelancer-insert-comment-form-div h3 {
-        margin-bottom: 5px;
-    }
-
-    #web-freelancer-comment-form input {
-        height: 2rem;
-    }
-
-    #web-freelancer-comment-form label {
-        font-size: 3vw;
-    }
-
-    #web-freelancer-comment-form button {
-        font-size: 4vw;
-    }
-
-    /* ****************** Footer Section ********************* */
-    .web-freelancer-footer-social i {
-        width: 7.5vw;
-        height: 7.5vw;
-        margin: 0 0.3rem;
-        padding: 0.2rem;
-    }
-
-    .web-freelancer-footer-copyright {
-        font-size: 4vw;
+    
+    .hero-btns {
+        flex-direction: row;
+        justify-content: center;
     }
 }
