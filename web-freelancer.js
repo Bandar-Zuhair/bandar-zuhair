@@ -1,80 +1,79 @@
 // Mobile Navigation Toggle
-const navToggle = document.getElementById('nav-toggle');
-const navMenu = document.getElementById('nav-menu');
+const navToggle = document.getElementById("nav-toggle");
+const navMenu = document.getElementById("nav-menu");
 
-navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    navToggle.innerHTML = navMenu.classList.contains('active') ?
-        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+navToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+    navToggle.innerHTML = navMenu.classList.contains("active") ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
 });
 
 // Close mobile menu when clicking on a nav link
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
+document.querySelectorAll(".nav-link").forEach((link) => {
+    link.addEventListener("click", () => {
+        navMenu.classList.remove("active");
         navToggle.innerHTML = '<i class="fas fa-bars"></i>';
     });
 });
 
 // Sticky Header
-window.addEventListener('scroll', () => {
-    const header = document.getElementById('header');
-    header.classList.toggle('scrolled', window.scrollY > 50);
+window.addEventListener("scroll", () => {
+    const header = document.getElementById("header");
+    header.classList.toggle("scrolled", window.scrollY > 50);
 });
 
 // Active Navigation Link on Scroll
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-link");
 
-window.addEventListener('scroll', () => {
-    let current = '';
+window.addEventListener("scroll", () => {
+    let current = "";
 
-    sections.forEach(section => {
+    sections.forEach((section) => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
 
         if (pageYOffset >= sectionTop - 300) {
-            current = section.getAttribute('id');
+            current = section.getAttribute("id");
         }
     });
 
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
+    navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
         }
     });
 });
 
 // Back to Top Button
-const backToTop = document.getElementById('back-to-top');
+const backToTop = document.getElementById("back-to-top");
 
-window.addEventListener('scroll', () => {
-    backToTop.classList.toggle('active', window.scrollY > 500);
+window.addEventListener("scroll", () => {
+    backToTop.classList.toggle("active", window.scrollY > 500);
 });
 
 // Smooth Scrolling for All Links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
         e.preventDefault();
 
-        const targetId = this.getAttribute('href');
+        const targetId = this.getAttribute("href");
         const targetElement = document.querySelector(targetId);
 
         window.scrollTo({
             top: targetElement.offsetTop - 80,
-            behavior: 'smooth'
+            behavior: "smooth",
         });
     });
 });
 
 // Animate Skill Bars on Scroll
-const skillBars = document.querySelectorAll('.skill-progress');
+const skillBars = document.querySelectorAll(".skill-progress");
 
 function animateSkillBars() {
-    skillBars.forEach(bar => {
+    skillBars.forEach((bar) => {
         const width = bar.style.width;
-        bar.style.width = '0';
+        bar.style.width = "0";
 
         setTimeout(() => {
             bar.style.width = width;
@@ -83,33 +82,21 @@ function animateSkillBars() {
 }
 
 // Intersection Observer for Skill Bars
-const aboutSection = document.getElementById('about');
+const aboutSection = document.getElementById("about");
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            animateSkillBars();
-            observer.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.2 });
+const observer = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                animateSkillBars();
+                observer.unobserve(entry.target);
+            }
+        });
+    },
+    { threshold: 0.2 }
+);
 
 observer.observe(aboutSection);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Comments */
 document.getElementById("user_comment_form").addEventListener("submit", async function (event) {
@@ -129,7 +116,7 @@ document.getElementById("user_comment_form").addEventListener("submit", async fu
         review_date,
         reviewer_name,
         comment,
-        stars
+        stars,
     };
 
     try {
@@ -137,11 +124,7 @@ document.getElementById("user_comment_form").addEventListener("submit", async fu
         const column = "bandar-zuhair";
 
         // Fetch existing array in that column (assume row with id = 1)
-        const { data, error: fetchError } = await supabase
-            .from("all_customers_comments")
-            .select(column)
-            .eq("id", 1)
-            .single();
+        const { data, error: fetchError } = await supabase.from("all_customers_comments").select(column).eq("id", 1).single();
 
         if (fetchError) throw fetchError;
 
@@ -160,7 +143,6 @@ document.getElementById("user_comment_form").addEventListener("submit", async fu
         document.getElementById("user_comment_form").reset();
         await fetchReviews(); // Optional: refresh UI
         showSuccessNotification();
-
     } catch (error) {
         console.error("Error inserting comment:", error.message);
     } finally {
@@ -171,17 +153,12 @@ document.getElementById("user_comment_form").addEventListener("submit", async fu
     }
 });
 
-
 // Function to Fetch and Display Reviews
 async function fetchReviews() {
     try {
         const column = "bandar-zuhair";
 
-        const { data, error } = await supabase
-            .from("all_customers_comments")
-            .select(column)
-            .eq("id", 1)
-            .single();
+        const { data, error } = await supabase.from("all_customers_comments").select(column).eq("id", 1).single();
 
         if (error) throw error;
 
@@ -190,7 +167,7 @@ async function fetchReviews() {
         let user_clint_rate_area = document.getElementById("user_clint_rate_area");
         user_clint_rate_area.innerHTML = "";
 
-        reviews.forEach(item => {
+        reviews.forEach((item) => {
             const { review_date, reviewer_name, comment, stars } = item;
 
             if (!comment.trim()) return;
@@ -210,12 +187,10 @@ async function fetchReviews() {
             `;
             user_clint_rate_area.appendChild(div);
         });
-
     } catch (error) {
         console.error("Error fetching reviews:", error.message);
     }
 }
-
 
 // Function to Show Floating Success Notification
 function showSuccessNotification() {
@@ -236,5 +211,4 @@ function showSuccessNotification() {
     }, 3000);
 }
 
-// Fetch Reviews on Page Load
-document.addEventListener('DOMContentLoaded', fetchReviews);
+fetchReviews();
