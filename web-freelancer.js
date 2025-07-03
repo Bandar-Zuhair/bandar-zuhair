@@ -212,3 +212,23 @@ function showSuccessNotification() {
 }
 
 fetchReviews();
+
+/* Elements Animation On Scroll */
+const animatedElements = document.querySelectorAll(".animate-on-scroll");
+
+function animateOnScroll() {
+    const triggerPoint = window.innerHeight * 0.9;
+
+    animatedElements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const midpoint = rect.top + rect.height / 2;
+
+        if (midpoint < triggerPoint) {
+            el.classList.add("in-view");
+        }
+    });
+}
+
+window.addEventListener("scroll", animateOnScroll);
+window.addEventListener("resize", animateOnScroll);
+document.addEventListener("DOMContentLoaded", animateOnScroll); // safer than immediate call
